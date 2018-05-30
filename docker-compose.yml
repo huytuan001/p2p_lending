@@ -2,48 +2,60 @@ version: '3'
 services:
   im-service:
     build: ./im-service
+    # restart: always
     ports:
-      - 8081:8080
+      - 8080:8080
       
   account-service-database:
+    image: mysql:5.7.22
+    ports:
+      - 3307:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: account-service
+    volumes:
+      - /var/lib/mysql
+
+  account-service:
+    build: ./account-service
+    # restart: always
+    ports:
+      - 8081:8080
+    environment:
+      DATABASE_SOURCE: jdbc:mysql://account-service-database:3306/account-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root
+      IM_SERVICE: http://im-service:8080
+      IM_SERVICE_CALLBACK: https://account-service:8080
+    depends_on:
+      - account-service-database
+      - im-service
+
+  loan-service-database:
     image: mysql:5.7.22
     ports:
       - 3306:3306
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: p2plending
+      MYSQL_DATABASE: loan-service
     volumes:
       - /var/lib/mysql
 
-  account-service:
-    build: ./account-service
+  loan-service:
+    build: ./loan-service
     ports:
-      - 8081:8080
+      - 8082:8080
+    # restart: always
     environment:
-      DATABASE_HOST: account-service-database
+      DATABASE_SOURCE: jdbc:mysql://loan-service-database:3306/loan-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
       DATABASE_USER: root
       DATABASE_PASSWORD: root
-      DATABASE: p2plending
-    depends_on: 
-      - account-service-database
+      ACCOUNT_SERVICE: http://account-service:8080
+      IM_SERVICE: http://im-service:8080
+      IM_SERVICE_CALLBACK: http://loan-service:8080
+      SELF_SERVICE: http://loan-service:8080
+    depends_on:
+      - loan-service-database
       - im-service
-
-  # loan-service-database:
-  #   image: mysql:5.7.22
-  #   ports:
-  #     - 330:3306
-  #   restart: always
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: root
-  #     MYSQL_DATABASE: p2plending
-  #   volumes:
-  #     - /var/lib/mysql
-
-  # loan-service:
-  #   build: ./loan-service
-  #   ports:
-  #     - 8082:8080
-  #   depends_on: 
-  #     - loan-service-database
-  #     - im-service
