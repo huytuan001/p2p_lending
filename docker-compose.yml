@@ -91,6 +91,7 @@ services:
       DATABASE_USER: root
       DATABASE_PASSWORD: root
       ACCOUNT_SERVICE: http://account-service:8080
+      LOAN_SERVICE: http://loan-service:8080
       IM_SERVICE: http://im-service:8080
       IM_SERVICE_CALLBACK: http://loan-application-service:8080
       SELF_SERVICE: http://loan-application-service:8080

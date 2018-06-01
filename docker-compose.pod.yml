@@ -83,24 +83,7 @@ services:
       DATABASE_USER: root
       DATABASE_PASSWORD: root
       ACCOUNT_SERVICE: http://account-service:8080
-      IM_SERVICE: http://im-service:8080
-      IM_SERVICE_CALLBACK: http://loan-application-service:8080
-      SELF_SERVICE: http://loan-application-service:8080
-    depends_on:
-      - loan-application-service-database
-      - im-service
-      - account-service
-      - loan-service
-  loan-application-service:
-    build: ./loan-application-service
-    ports:
-      - 8083:8080
-    restart: always
-    environment:
-      DATABASE_SOURCE: jdbc:mysql://loan-application-service-database:3306/loan-application-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
-      DATABASE_USER: root
-      DATABASE_PASSWORD: root
-      ACCOUNT_SERVICE: http://account-service:8080
+      LOAN_SERVICE: http://loan-service:8080
       IM_SERVICE: http://im-service:8080
       IM_SERVICE_CALLBACK: http://loan-application-service:8080
       SELF_SERVICE: http://loan-application-service:8080
