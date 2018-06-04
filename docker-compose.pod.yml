@@ -1,7 +1,9 @@
 version: '3'
 services:
   im-service:
-    build: ./im-service
+    build:
+      context: ./im-service
+      dockerfile: Dockerfile-prod
     restart: always
     ports:
       - 8080:8080
@@ -9,7 +11,7 @@ services:
   account-service-database:
     image: mysql:5.7.22
     ports:
-      - 3307:3306
+      - 3306:3306
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -18,7 +20,9 @@ services:
       - /var/lib/mysql
 
   account-service:
-    build: ./account-service
+    build:
+      context: ./account-service
+      dockerfile: Dockerfile-prod
     restart: always
     ports:
       - 8081:8080
@@ -36,7 +40,7 @@ services:
   loan-service-database:
     image: mysql:5.7.22
     ports:
-      - 3306:3306
+      - 3307:3306
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -45,7 +49,9 @@ services:
       - /var/lib/mysql
 
   loan-service:
-    build: ./loan-service
+    build:
+      context: ./loan-service
+      dockerfile: Dockerfile-prod
     ports:
       - 8082:8080
     restart: always
@@ -74,7 +80,9 @@ services:
       - /var/lib/mysql
 
   loan-application-service:
-    build: ./loan-application-service
+    build:
+      context: ./loan-application-service
+      dockerfile: Dockerfile-prod
     ports:
       - 8083:8080
     restart: always
