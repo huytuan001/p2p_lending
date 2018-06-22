@@ -1,3 +1,9 @@
+# Intro
+1. Quy chuẩn viết commit message: https://viblo.asia/p/lam-the-nao-de-viet-mot-git-commit-message-tot-DZrGNNnpGVB
+2. API phát triển theo quy chuẩn RESTful: https://tools.ietf.org/html/rfc6690
+3. Gitflow: https://github.com/nvie/gitflow
+4. Code quality control sử dụng SonarQube
+
 # Tổng quan
 - Clone project về: http://192.168.105.11:7990/projects/P2P/repos/platform/browse
 - Clone các services con về trong cùng thư mục(Lưu ý không thay đổi tên folder chứa service)
