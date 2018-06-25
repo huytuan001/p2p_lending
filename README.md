@@ -32,16 +32,16 @@ Chạy lệnh `docker-compose -f docker-compose.yml -f docker-compose.loan-appli
 
 # Danh sách micro-services::
 
-## IM service(Port 8080)
+## IM service(Port 8080 - Remote debug port 5005)
 
 
-## Account service(Port 8081)
+## Account service(Port 8081 - Remote debug port 5006)
 
 
-## Loan service(Port 8082)
+## Loan service(Port 8082 - Remote debug port 5007)
 
 
-## Loan application service(Port 8083)
+## Loan application service(Port 8083 - Remote debug port 5008)
 
 
 # Link các API

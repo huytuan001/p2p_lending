@@ -5,3 +5,5 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./loan-application-service/build:/app/build
+    ports:
+      - 5008:5005

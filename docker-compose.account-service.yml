@@ -5,3 +5,5 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./account-service/build:/app/build
+    ports:
+      - 5006:5005

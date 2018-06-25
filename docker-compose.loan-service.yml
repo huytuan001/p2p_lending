@@ -5,3 +5,5 @@ services:
       dockerfile: Dockerfile-prod
     volumes:
       - ./loan-service/build:/app/build
+    ports:
+      - 5007:5005
