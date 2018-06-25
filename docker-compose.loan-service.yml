@@ -2,7 +2,7 @@ version: '3'
 services:
   loan-service:
     build:
-      dockerfile: Dockerfile-prod
+      dockerfile: Dockerfile
     volumes:
       - ./loan-service/build:/app/build
     ports:

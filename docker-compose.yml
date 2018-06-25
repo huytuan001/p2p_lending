@@ -56,7 +56,7 @@ services:
       - 8082:8080
     restart: always
     environment:
-      DATABASE_SOURCE: jdbc:mysql://loan-service-database:3307/loan-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+      DATABASE_SOURCE: jdbc:mysql://loan-service-database:3306/loan-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
       DATABASE_USER: root
       DATABASE_PASSWORD: root
       ACCOUNT_SERVICE: http://account-service:8080
@@ -87,7 +87,7 @@ services:
       - 8083:8080
     restart: always
     environment:
-      DATABASE_SOURCE: jdbc:mysql://loan-application-service-database:3308/loan-application-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+      DATABASE_SOURCE: jdbc:mysql://loan-application-service-database:3306/loan-application-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
       DATABASE_USER: root
       DATABASE_PASSWORD: root
       ACCOUNT_SERVICE: http://account-service:8080
