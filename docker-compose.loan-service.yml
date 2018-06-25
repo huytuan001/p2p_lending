@@ -1,0 +1,7 @@
+version: '3'
+services:
+  loan-service:
+    build:
+      dockerfile: Dockerfile-prod
+    volumes:
+      - ./loan-service/build:/app/build

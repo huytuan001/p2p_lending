@@ -14,24 +14,41 @@
 
 - Thiết kế API: https://documenter.getpostman.com/view/11739/RW1gFHck
 
-# Khởi chạy platform(môi trường developement)
-1. Chạy lệnh `docker-compose up -d --build`
+# Khởi chạy platform(môi trường developement, auto reload on source code change)
+1. Để phát triển từng service()
+
+Chạy lệnh `docker-compose -f docker-compose.yml -f docker-compose.im-service.yml up -d --build`
+
+Chạy lệnh `docker-compose -f docker-compose.yml -f docker-compose.account-service.yml up -d --build`
+
+Chạy lệnh `docker-compose -f docker-compose.yml -f docker-compose.loan-service.yml up -d --build`
+
+Chạy lệnh `docker-compose -f docker-compose.yml -f docker-compose.loan-application-service.yml up -d --build`
+
 2. Chạy lệnh: `gradle build -t -x test`
 
-# Build bản production
+# Build bản production:
+`docker-compose build`
 
-# Các microservices trong hệ thống:
+# Danh sách micro-services::
 
-## IM service:
+## IM service(Port 8080)
 
-## Account service:
 
-## Loan service:
+## Account service(Port 8081)
 
-## Loan application service:
+
+## Loan service(Port 8082)
+
+
+## Loan application service(Port 8083)
+
 
 # Link các API
 http://localhost:8080 - IM service
+
 http://localhost:8081 - Account service
+
 http://localhost:8082 - Loan service
+
 http://localhost:8083 - Loan application service

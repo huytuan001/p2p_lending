@@ -1,0 +1,7 @@
+version: '3'
+services:
+  account-service:
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - ./account-service/build:/app/build
