@@ -7,6 +7,8 @@ services:
     restart: always
     ports:
       - 8080:8080
+    volumes:
+      - ${USERPROFILE}\.gradle:/home/gradle/.gradle
 
   account-service-database:
     image: mysql:5.7.22
@@ -36,6 +38,8 @@ services:
     depends_on:
       - account-service-database
       - im-service
+    volumes:
+      - ${USERPROFILE}\.gradle:/home/gradle/.gradle
 
   loan-service-database:
     image: mysql:5.7.22
@@ -67,6 +71,8 @@ services:
       - loan-service-database
       - account-service
       - im-service
+    volumes:
+      - ${USERPROFILE}\.gradle:/home/gradle/.gradle
 
   loan-application-service-database:
     image: mysql:5.7.22
@@ -100,3 +106,5 @@ services:
       - im-service
       - account-service
       - loan-service
+    volumes:
+      - ${USERPROFILE}\.gradle:/home/gradle/.gradle

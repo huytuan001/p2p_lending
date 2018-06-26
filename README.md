@@ -15,7 +15,11 @@
 - Thiết kế API: https://documenter.getpostman.com/view/11739/RW1gFHck
 
 # Khởi chạy platform(môi trường developement, auto reload on source code change)
-1. Để phát triển từng service()
+1. Cài đặt system enviroment variable: `set COMPOSE_CONVERT_WINDOWS_PATHS=1`
+
+2. Cài đặt Docker cho phép truy xuất vào ổ C & ổ D
+
+3. Khởi chạy ứng dụng bằng 1 trong các lệnh sau:
 
 Chạy lệnh `docker-compose -f docker-compose.yml -f docker-compose.im-service.yml up -d --build`
 
@@ -25,7 +29,9 @@ Chạy lệnh `docker-compose -f docker-compose.yml -f docker-compose.loan-servi
 
 Chạy lệnh `docker-compose -f docker-compose.yml -f docker-compose.loan-application-service.yml up -d --build`
 
-2. Chạy lệnh: `gradle build -t -x test`
+4. Chạy lệnh: `gradle build -t -x test` để tự động reload lại ứng dụng khi thay đổi mã nguồn
+
+5. Để debugger service tạo 1 remote debug config trên InteliJ Idea với port tương ứng với remote debug port của services 
 
 # Build bản production:
 `docker-compose build`
