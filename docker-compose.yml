@@ -3,7 +3,7 @@ services:
   im-service:
     build:
       context: ./im-service
-      dockerfile: Dockerfile-prod
+      dockerfile: Dockerfile.prod
     restart: always
     ports:
       - 8080:8080
