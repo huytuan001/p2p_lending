@@ -1,0 +1,9 @@
+version: '3'
+services:
+  admin-cp:
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - ./admin-cp:/ng-app
+    ports:
+      - 4200:4200
