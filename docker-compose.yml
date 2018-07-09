@@ -78,12 +78,14 @@ services:
       IM_SERVICE: http://im-service:8080
       IM_SERVICE_CALLBACK: http://loan-service:8080
       SELF_SERVICE: http://loan-service:8080
+      API_GATEWAY_URL: http://api-gateway:8080
     volumes:
       - ./uploads:/app/uploads
     depends_on:
       - loan-service-database
       - account-service
       - im-service
+      - api-gateway
 
   loan-application-service-database:
     image: mysql:5.7.22
@@ -112,11 +114,13 @@ services:
       IM_SERVICE: http://im-service:8080
       IM_SERVICE_CALLBACK: http://loan-application-service:8080
       SELF_SERVICE: http://loan-application-service:8080
+      API_GATEWAY_URL: http://api-gateway:8080
     depends_on:
       - loan-application-service-database
       - im-service
       - account-service
       - loan-service
+      - api-gateway
 
   admin-cp:
     build:
