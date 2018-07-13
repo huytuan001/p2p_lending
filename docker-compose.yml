@@ -7,6 +7,11 @@ services:
     restart: always
     ports:
       - 8079:8080
+    environment:
+      - ACCOUNT_SERVICE: http://account-service:8080
+      - LOAN_SERVICE: http://loan-service:8080
+      - LOAN_APPLICATION_SERVICE: http://loan-application-service:8080
+      - NOTIFICATION_SERVICE: http://im-service:8080
 
   im-service:
     build:
@@ -29,7 +34,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: account-service
     volumes:
-      - /var/lib/mysql
+      - ./database/account-service:/var/lib/mysql
 
   account-service:
     build:
@@ -60,7 +65,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: loan-service
     volumes:
-      - /var/lib/mysql
+      - ./database/loan-service:/var/lib/mysql
 
   loan-service:
     build:
@@ -96,7 +101,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: loan-application-service
     volumes:
-      - /var/lib/mysql
+      - ./database/loan-application-service:/var/lib/mysql
 
   loan-application-service:
     build:

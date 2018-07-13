@@ -7,6 +7,7 @@
 # Tổng quan
 - Clone project về: http://192.168.105.11:7990/projects/P2P/repos/platform/browse
 - Clone các services con về trong cùng thư mục(Lưu ý không thay đổi tên folder chứa service)
+    - http://192.168.105.11:7990/projects/P2P/repos/api-gateway/browse
     - http://192.168.105.11:7990/projects/P2P/repos/im-service/browse
     - http://192.168.105.11:7990/projects/P2P/repos/account-service/browse
     - http://192.168.105.11:7990/projects/P2P/repos/loan-service/browse
@@ -17,9 +18,11 @@
 # Khởi chạy platform(môi trường developement, auto reload on source code change)
 1. Cài đặt system enviroment variable: `set COMPOSE_CONVERT_WINDOWS_PATHS=1`
 
-2. Cài đặt Docker cho phép truy xuất vào ổ C & ổ D
+2. Cài đặt Docker cho phép truy xuất vào ổ D
 
 3. Khởi chạy ứng dụng bằng 1 trong các lệnh sau:
+
+Chạy lệnh `docker-compose -f docker-compose.yml -f docker-compose.api-gateway.yml up -d --build`
 
 Chạy lệnh `docker-compose -f docker-compose.yml -f docker-compose.im-service.yml up -d --build`
 
