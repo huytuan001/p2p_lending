@@ -8,10 +8,10 @@ services:
     ports:
       - 8079:8080
     environment:
-      - ACCOUNT_SERVICE: http://account-service:8080
-      - LOAN_SERVICE: http://loan-service:8080
-      - LOAN_APPLICATION_SERVICE: http://loan-application-service:8080
-      - NOTIFICATION_SERVICE: http://im-service:8080
+      ACCOUNT_SERVICE: http://account-service:8080
+      LOAN_SERVICE: http://loan-service:8080
+      LOAN_APPLICATION_SERVICE: http://loan-application-service:8080
+      NOTIFICATION_SERVICE: http://im-service:8080
 
   im-service:
     build:
