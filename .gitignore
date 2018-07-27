@@ -37,3 +37,4 @@
 /loan-application-service/
 /admin-cp/
 /api-gateway/
+!/.idea/runConfigurations/

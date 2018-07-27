@@ -1,0 +1,136 @@
+version: '3'
+services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile.prod
+    restart: always
+    ports:
+      - 8079:8079
+    environment:
+      NOTIFICATION_SERVICE: http://im-service:8080
+      ACCOUNT_SERVICE: http://account-service:8081
+      LOAN_SERVICE: http://loan-service:8082
+      LOAN_APPLICATION_SERVICE: http://loan-application-service:8083
+
+  im-service:
+    build:
+      context: ./im-service
+      dockerfile: Dockerfile.prod
+    restart: always
+    environment:
+      API_GATEWAY_URL: http://api-gateway:8079
+    ports:
+      - 8080:8080
+    depends_on:
+      - api-gateway
+
+  account-service-database:
+    image: mysql:5.7.22
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: account-service
+    volumes:
+      - ./database/account-service:/var/lib/mysql
+
+  account-service:
+    build:
+      context: ./account-service
+      dockerfile: Dockerfile-prod
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      DATABASE_SOURCE: jdbc:mysql://account-service-database:3306/account-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root
+      API_GATEWAY_URL: http://api-gateway:8079
+      IM_SERVICE: http://im-service:8080
+      IM_SERVICE_CALLBACK: http://account-service:8081
+      LOAN_SERVICE: http://loan-service:8082
+    depends_on:
+      - account-service-database
+      - im-service
+      - api-gateway
+
+  loan-service-database:
+    image: mysql:5.7.22
+    ports:
+      - 3307:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: loan-service
+    volumes:
+      - ./database/loan-service:/var/lib/mysql
+
+  loan-service:
+    build:
+      context: ./loan-service
+      dockerfile: Dockerfile-prod
+    ports:
+      - 8082:8082
+    restart: always
+    environment:
+      DATABASE_SOURCE: jdbc:mysql://loan-service-database:3306/loan-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root
+      API_GATEWAY_URL: http://api-gateway:8079
+      IM_SERVICE: http://im-service:8080
+      ACCOUNT_SERVICE: http://account-service:8081
+      LOAN_APPLICATION_SERVICE: http://loan-application-service:8083
+      IM_SERVICE_CALLBACK: http://loan-service:8082
+      SELF_SERVICE: http://loan-service:8082
+    volumes:
+      - ./uploads:/app/uploads
+    depends_on:
+      - loan-service-database
+      - account-service
+      - im-service
+      - api-gateway
+
+  loan-application-service-database:
+    image: mysql:5.7.22
+    ports:
+      - 3308:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: loan-application-service
+    volumes:
+      - ./database/loan-application-service:/var/lib/mysql
+
+  loan-application-service:
+    build:
+      context: ./loan-application-service
+      dockerfile: Dockerfile-prod
+    ports:
+      - 8083:8083
+    restart: always
+    environment:
+      DATABASE_SOURCE: jdbc:mysql://loan-application-service-database:3306/loan-application-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root
+      API_GATEWAY_URL: http://api-gateway:8079
+      IM_SERVICE: http://im-service:8080
+      ACCOUNT_SERVICE: http://account-service:8081
+      LOAN_SERVICE: http://loan-service:8082
+      IM_SERVICE_CALLBACK: http://loan-application-service:8083
+      SELF_SERVICE: http://loan-application-service:8083
+    depends_on:
+      - loan-application-service-database
+      - im-service
+      - account-service
+      - loan-service
+      - api-gateway
+
+  admin-cp:
+    build:
+      context: ./admin-cp
+      dockerfile: Dockerfile.prod
+    ports:
+      - 80:80
+    restart: always
