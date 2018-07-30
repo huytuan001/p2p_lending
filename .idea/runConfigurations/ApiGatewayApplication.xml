@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="api-gateway_main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="vn.mony.apigateway.ApiGatewayApplication" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <envs>
+      <env name="ACCOUNT_SERVICE" value="http://localhost:8081" />
+      <env name="LOAN_SERVICE" value="http://localhost:8082" />
+      <env name="LOAN_APPLICATION_SERVICE " value="http://localhost:8083 " />
+      <env name="NOTIFICATION_SERVICE " value="http://localhost:8080" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

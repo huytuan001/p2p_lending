@@ -1,0 +1,21 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="LoanServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="loan-service_main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="vn.mony.loan_service.LoanServiceApplication" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <envs>
+      <env name="DATABASE_SOURCE" value="jdbc:mysql://127.0.0.1:3307/loan-service?useUnicode=yes&amp;characterEncoding=UTF-8&amp;useSSL=false" />
+      <env name="DATABASE_USER" value="root" />
+      <env name="DATABASE_PASSWORD" value="root" />
+      <env name="ACCOUNT_SERVICE" value="http://localhost:8081" />
+      <env name="LOAN_APPLICATION_SERVICE" value="http://localhost:8083" />
+      <env name="IM_SERVICE" value="http://localhost:8080" />
+      <env name="IM_SERVICE_CALLBACK" value="http://localhost:8080" />
+      <env name="SELF_SERVICE" value="http://localhost:8082" />
+      <env name="API_GATEWAY_URL" value="http://localhost:8079" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
