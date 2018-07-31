@@ -3,6 +3,7 @@
 2. API phát triển theo quy chuẩn RESTful: https://tools.ietf.org/html/rfc6690
 3. Gitflow: https://github.com/nvie/gitflow
 4. Code quality control sử dụng SonarQube
+5. Đặc tả thiết kế API: https://documenter.getpostman.com/view/11739/RW1gFHck
 
 # Tổng quan
 - Clone project về: http://192.168.105.11:7990/projects/P2P/repos/platform/browse
@@ -14,39 +15,18 @@
     - http://192.168.105.11:7990/projects/P2P/repos/loan-application-service/browse
     - http://192.168.105.11:7990/projects/P2P/repos/admin-cp/browse
 
--- platform
------ api-gateway
------ im-service
------ account-service
------ loan-service
------ loan-application-service
------ admin-cp
-
-- Thiết kế API: https://documenter.getpostman.com/view/11739/RW1gFHck
 
 # Khởi chạy platform(môi trường developement, auto reload on source code change)
 1. Cài đặt system enviroment variable: `set COMPOSE_CONVERT_WINDOWS_PATHS=1`
 
 2. Cài đặt Docker cho phép truy xuất vào ổ D (hoặc ổ C)
 
-3. Khởi chạy ứng dụng bằng 1 trong các lệnh sau:
-
-Chạy lệnh `docker-compose -f docker-compose.yml -f docker-compose.api-gateway.yml up -d --build`
-
-Chạy lệnh `docker-compose -f docker-compose.yml -f docker-compose.im-service.yml up -d --build`
-
-Chạy lệnh `docker-compose -f docker-compose.yml -f docker-compose.account-service.yml up -d --build`
-
-Chạy lệnh `docker-compose -f docker-compose.yml -f docker-compose.loan-service.yml up -d --build`
-
-Chạy lệnh `docker-compose -f docker-compose.yml -f docker-compose.loan-application-service.yml up -d --build`
+3. Khởi chạy databases của các service: `docker-compose up -d`
 
 4. Chạy lệnh: `gradle build -t -x test` để tự động reload lại ứng dụng khi thay đổi mã nguồn
 
-5. Để debugger service tạo 1 remote debug config trên InteliJ Idea với port tương ứng với remote debug port của services 
 
-# Build bản production:
-`docker-compose build`
+# Build bản production: `docker-compose build`
 
 # Danh sách micro-services::
 
