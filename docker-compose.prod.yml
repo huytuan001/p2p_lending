@@ -39,7 +39,7 @@ services:
   account-service:
     build:
       context: ./account-service
-      dockerfile: Dockerfile-prod
+      dockerfile: Dockerfile.prod
     restart: always
     ports:
       - 8081:8081
@@ -70,7 +70,7 @@ services:
   loan-service:
     build:
       context: ./loan-service
-      dockerfile: Dockerfile-prod
+      dockerfile: Dockerfile.prod
     ports:
       - 8082:8082
     restart: always
@@ -106,7 +106,7 @@ services:
   loan-application-service:
     build:
       context: ./loan-application-service
-      dockerfile: Dockerfile-prod
+      dockerfile: Dockerfile.prod
     ports:
       - 8083:8083
     restart: always
