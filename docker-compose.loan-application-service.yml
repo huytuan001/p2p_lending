@@ -1,9 +1,0 @@
-version: '3'
-services:
-  loan-application-service:
-    build:
-      dockerfile: Dockerfile
-    volumes:
-      - ./loan-application-service/build:/app/build
-    ports:
-      - 5008:5005

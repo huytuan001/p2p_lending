@@ -1,9 +1,0 @@
-version: '3'
-services:
-  api-gateway:
-    build:
-      dockerfile: Dockerfile
-    volumes:
-      - ./api-gateway/build:/app/build
-    ports:
-      - 5004:5005
