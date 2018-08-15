@@ -27,6 +27,7 @@ services:
 
   account-service-database:
     image: mysql:5.7.22
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     ports:
       - 3306:3306
     restart: always
@@ -58,6 +59,7 @@ services:
 
   loan-service-database:
     image: mysql:5.7.22
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     ports:
       - 3307:3306
     restart: always
@@ -94,6 +96,7 @@ services:
 
   loan-application-service-database:
     image: mysql:5.7.22
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     ports:
       - 3308:3306
     restart: always
