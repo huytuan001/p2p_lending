@@ -35,3 +35,23 @@ services:
       MYSQL_DATABASE: loan-application-service
     volumes:
       - ./database/loan-application-service:/var/lib/mysql
+
+  logging-db:
+    image: mongo
+    restart: always
+    ports:
+    - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: mony
+    volumes:
+    - /data/db
+
+  caching-db:
+    image: redis
+    restart: always
+    ports:
+    - 6379:6379
+    volumes:
+    - ./database/redis-db:/data

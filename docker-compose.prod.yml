@@ -1,5 +1,61 @@
 version: '3'
 services:
+  logging-db:
+    image: mongo
+    restart: always
+    ports:
+    - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: mony
+    volumes:
+    - /data/db
+
+  caching-db:
+    image: redis
+    restart: always
+    ports:
+    - 6379:6379
+    volumes:
+    - ./database/redis-db:/data
+
+  account-service-database:
+    image: mysql:5.7.22
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    ports:
+    - 3306:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: account-service
+    volumes:
+    - ./database/account-service:/var/lib/mysql
+
+  loan-service-database:
+    image: mysql:5.7.22
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    ports:
+    - 3307:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: loan-service
+    volumes:
+    - ./database/loan-service:/var/lib/mysql
+
+  loan-application-service-database:
+    image: mysql:5.7.22
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    ports:
+    - 3308:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: loan-application-service
+    volumes:
+    - ./database/loan-application-service:/var/lib/mysql
+
   api-gateway:
     build:
       context: ./api-gateway
@@ -25,18 +81,6 @@ services:
     depends_on:
       - api-gateway
 
-  account-service-database:
-    image: mysql:5.7.22
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-    ports:
-      - 3306:3306
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: account-service
-    volumes:
-      - ./database/account-service:/var/lib/mysql
-
   account-service:
     build:
       context: ./account-service
@@ -56,18 +100,6 @@ services:
       - account-service-database
       - im-service
       - api-gateway
-
-  loan-service-database:
-    image: mysql:5.7.22
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-    ports:
-      - 3307:3306
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: loan-service
-    volumes:
-      - ./database/loan-service:/var/lib/mysql
 
   loan-service:
     build:
@@ -93,18 +125,6 @@ services:
       - account-service
       - im-service
       - api-gateway
-
-  loan-application-service-database:
-    image: mysql:5.7.22
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-    ports:
-      - 3308:3306
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: loan-application-service
-    volumes:
-      - ./database/loan-application-service:/var/lib/mysql
 
   loan-application-service:
     build:

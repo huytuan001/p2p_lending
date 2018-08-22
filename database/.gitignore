@@ -2,4 +2,5 @@
 !account-service
 !loan-service
 !loan-application-service
+!redis-db
 !.gitignore
