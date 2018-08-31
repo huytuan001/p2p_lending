@@ -118,6 +118,8 @@ services:
       LOAN_APPLICATION_SERVICE: http://loan-application-service:8083
       IM_SERVICE_CALLBACK: http://loan-service:8082
       SELF_SERVICE: http://loan-service:8082
+      REDIS_HOST: caching-db
+      REDIS_PORT: 6379
     volumes:
       - ./uploads:/app/uploads
     depends_on:
