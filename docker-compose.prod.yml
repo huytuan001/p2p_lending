@@ -27,8 +27,8 @@ services:
       - ./database/redis-db:/data
 
   account-service-database:
-    image: mysql:5.7.22
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    image: mysql
+    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_unicode_ci
     ports:
       - 3306:3306
     restart: always
@@ -39,8 +39,8 @@ services:
       - ./database/account-service:/var/lib/mysql
 
   loan-service-database:
-    image: mysql:5.7.22
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    image: mysql
+    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_unicode_ci
     ports:
       - 3307:3306
     restart: always
@@ -51,8 +51,8 @@ services:
       - ./database/loan-service:/var/lib/mysql
 
   loan-application-service-database:
-    image: mysql:5.7.22
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    image: mysql
+    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_unicode_ci
     ports:
       - 3308:3306
     restart: always
