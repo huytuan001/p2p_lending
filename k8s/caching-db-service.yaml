@@ -7,14 +7,14 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: loan-application-service
-  name: loan-application-service
+    io.kompose.service: caching-db
+  name: caching-db
 spec:
   ports:
-  - name: "8083"
-    port: 8083
-    targetPort: 8083
+  - name: "6379"
+    port: 6379
+    targetPort: 6379
   selector:
-    io.kompose.service: loan-application-service
+    io.kompose.service: caching-db
 status:
   loadBalancer: {}

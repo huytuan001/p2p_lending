@@ -1,11 +1,11 @@
 version: '3'
 services:
   account-service-database:
-    image: mysql:5.7.22
+    image: mysql
     ports:
       - 3306:3306
     restart: always
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_unicode_ci
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: account-service
@@ -13,11 +13,11 @@ services:
       - ./database/account-service:/var/lib/mysql
 
   loan-service-database:
-    image: mysql:5.7.22
+    image: mysql
     ports:
       - 3307:3306
     restart: always
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_unicode_ci
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: loan-service
@@ -25,11 +25,11 @@ services:
       - ./database/loan-service:/var/lib/mysql
 
   loan-application-service-database:
-    image: mysql:5.7.22
+    image: mysql
     ports:
       - 3308:3306
     restart: always
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    command: mysqld --default-authentication-plugin=mysql_native_password --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_unicode_ci
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: loan-application-service
@@ -40,18 +40,24 @@ services:
     image: mongo
     restart: always
     ports:
-    - 27017:27017
+      - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: mony
     volumes:
-    - /data/db
+      - /data/db
 
   caching-db:
     image: redis
     restart: always
     ports:
-    - 6379:6379
+      - 6379:6379
     volumes:
-    - ./database/redis-db:/data
+      - ./database/redis-db:/data
+  mony-queue:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672

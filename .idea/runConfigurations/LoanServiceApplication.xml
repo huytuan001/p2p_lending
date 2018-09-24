@@ -13,6 +13,8 @@
       <env name="IM_SERVICE_CALLBACK" value="http://localhost:8080" />
       <env name="SELF_SERVICE" value="http://localhost:8082" />
       <env name="API_GATEWAY_URL" value="http://localhost:8079" />
+      <env name="REDIS_HOST" value="caching-db" />
+      <env name="REDIS_PORT" value="6379" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
