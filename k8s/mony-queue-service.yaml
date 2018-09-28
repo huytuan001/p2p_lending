@@ -7,14 +7,17 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: loan-application-service
-  name: loan-application-service
+    io.kompose.service: mony-queue
+  name: mony-queue
 spec:
   ports:
-  - name: "8083"
-    port: 8083
-    targetPort: 8083
+  - name: "5672"
+    port: 5672
+    targetPort: 5672
+  - name: "15672"
+    port: 15672
+    targetPort: 15672
   selector:
-    io.kompose.service: loan-application-service
+    io.kompose.service: mony-queue
 status:
   loadBalancer: {}

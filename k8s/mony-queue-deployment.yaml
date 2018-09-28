@@ -7,8 +7,8 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: im-service
-  name: im-service
+    io.kompose.service: mony-queue
+  name: mony-queue
 spec:
   replicas: 1
   strategy: {}
@@ -16,16 +16,14 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: im-service
+        io.kompose.service: mony-queue
     spec:
       containers:
-      - env:
-        - name: API_GATEWAY_URL
-          value: http://api-gateway:8079
-        image: im-service
-        name: im-service
+      - image: rabbitmq:3-management
+        name: mony-queue
         ports:
-        - containerPort: 8080
+        - containerPort: 5672
+        - containerPort: 15672
         resources: {}
       restartPolicy: Always
 status: {}
