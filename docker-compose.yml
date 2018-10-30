@@ -49,12 +49,14 @@ services:
       - /data/db
 
   caching-db:
+
     image: redis
     restart: always
     ports:
       - 6379:6379
     volumes:
       - ./database/redis-db:/data
+
   mony-queue:
     image: rabbitmq:3-management
     restart: always
