@@ -37,4 +37,5 @@
 /loan-application-service/
 /admin-cp/
 /api-gateway/
+/scoring-service/
 !.idea/runConfigurations/
