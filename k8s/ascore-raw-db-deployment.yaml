@@ -7,8 +7,8 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: logging-db
-  name: logging-db
+    io.kompose.service: ascore-raw-db
+  name: ascore-raw-db
 spec:
   replicas: 1
   strategy:
@@ -17,27 +17,27 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: logging-db
+        io.kompose.service: ascore-raw-db
     spec:
       containers:
       - env:
         - name: MONGO_INITDB_DATABASE
-          value: mony
+          value: ascore-raw
         - name: MONGO_INITDB_ROOT_PASSWORD
           value: root
         - name: MONGO_INITDB_ROOT_USERNAME
           value: root
         image: mongo
-        name: logging-db
+        name: ascore-raw-db
         ports:
         - containerPort: 27017
         resources: {}
         volumeMounts:
         - mountPath: /data/db
-          name: logging-db-claim0
+          name: ascore-raw-db-claim0
       restartPolicy: Always
       volumes:
-      - name: logging-db-claim0
+      - name: ascore-raw-db-claim0
         persistentVolumeClaim:
-          claimName: logging-db-claim0
+          claimName: ascore-raw-db-claim0
 status: {}

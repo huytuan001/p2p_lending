@@ -7,14 +7,14 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: loan-application-service
-  name: loan-application-service
+    io.kompose.service: scoring-service-database
+  name: scoring-service-database
 spec:
   ports:
-  - name: "8083"
-    port: 8083
-    targetPort: 8083
+  - name: "3309"
+    port: 3309
+    targetPort: 3306
   selector:
-    io.kompose.service: loan-application-service
+    io.kompose.service: scoring-service-database
 status:
   loadBalancer: {}
