@@ -210,3 +210,27 @@ services:
       depends_on:
       - scoring-service-database
       - api-gateway
+
+  logging-service:
+    build:
+      context: ./logging-service
+      dockerfile: Dockerfile.prod
+    ports:
+      - 8084:8084
+    restart: always
+    environment:
+      DATABASE_SOURCE: jdbc:mysql://loan-service-database:3306/loan-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root
+      MONGO_HOST: logging-db
+      MONGO_PORT: 27017
+      MONGO_USER: root
+      MONGO_PASSWORD: root
+      RABBIT_HOST: mony-queue
+      RABBIT_PORT: 5672
+      RABBIT_USER: guest
+      RABBIT_PASSWORD: guest
+    depends_on:
+    - loan-service-database
+    - mony-queue
+    - logging-db      
