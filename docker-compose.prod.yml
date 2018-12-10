@@ -126,6 +126,7 @@ services:
       IM_SERVICE: http://im-service:8080
       IM_SERVICE_CALLBACK: http://account-service:8081
       LOAN_SERVICE: http://loan-service:8082
+      SCORING_SERVICE: http://scoring-service:8085
     depends_on:
       - account-service-database
       - im-service
@@ -196,7 +197,7 @@ services:
         dockerfile: Dockerfile.prod
       restart: always
       ports:
-      - 8084:8084
+      - 8085:8085
       environment:
         DATABASE_SOURCE: jdbc:mysql://scoring-service-database:3309/account-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
         DATABASE_USER: root
