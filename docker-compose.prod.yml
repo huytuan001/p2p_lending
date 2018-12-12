@@ -183,6 +183,7 @@ services:
       DATABASE_SOURCE: jdbc:mysql://loan-service-database:3306/loan-service
       DATABASE_USER: root
       DATABASE_PASSWORD: root
+      API_GATEWAY_URL: http://api-gateway:8079
       MONGO_HOST: logging-db
       MONGO_PORT: 27017
       MONGO_USER: root
@@ -207,6 +208,7 @@ services:
       DATABASE_SOURCE: jdbc:mariadb://scoring-service-database:3309/scoring_service
       DATABASE_USER: root
       DATABASE_PASSWORD: root
+      API_GATEWAY_URL: http://api-gateway:8079
       MONGO_HOST: logging-db
       MONGO_PORT: 27017
       MONGO_USER: root
