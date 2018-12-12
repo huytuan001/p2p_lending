@@ -7,8 +7,8 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service: account-service
-  name: account-service
+    io.kompose.service: scoring-service
+  name: scoring-service
 spec:
   replicas: 1
   strategy: {}
@@ -16,28 +16,32 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: account-service
+        io.kompose.service: scoring-service
     spec:
       containers:
       - env:
-        - name: API_GATEWAY_URL
-          value: http://api-gateway:8079
         - name: DATABASE_PASSWORD
           value: root
         - name: DATABASE_SOURCE
-          value: jdbc:mysql://account-service-database:3306/account-service
+          value: jdbc:mariadb://scoring-service-database:3309/scoring_service
         - name: DATABASE_USER
           value: root
-        - name: IM_SERVICE
-          value: http://im-service:8080
-        - name: IM_SERVICE_CALLBACK
-          value: http://account-service:8081
-        - name: LOAN_SERVICE
-          value: http://loan-service:8082
-        image: account-service
-        name: account-service
+        - name: MONGO_AUTH
+          value: admin
+        - name: MONGO_DATABASE
+          value: ascore-raw
+        - name: MONGO_HOST
+          value: logging-db
+        - name: MONGO_PASSWORD
+          value: root
+        - name: MONGO_PORT
+          value: "27017"
+        - name: MONGO_USER
+          value: root
+        image: scoring-service
+        name: scoring-service
         ports:
-        - containerPort: 8081
+        - containerPort: 8085
         resources: {}
       restartPolicy: Always
 status: {}

@@ -38,4 +38,6 @@
 /admin-cp/
 /api-gateway/
 /scoring-service/
+/logging-service/
+/central-config/
 !.idea/runConfigurations/
