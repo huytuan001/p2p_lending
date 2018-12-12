@@ -208,6 +208,7 @@ services:
         MONGO_PASSWORD: root
         MONGO_DATABASE: ascore-raw
         MONGO_AUTH: admin
+        API_GATEWAY_URL: http://api-gateway:8079
       depends_on:
       - scoring-service-database
       - api-gateway
