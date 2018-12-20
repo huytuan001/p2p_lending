@@ -140,6 +140,10 @@ services:
       SELF_SERVICE: http://loan-service:8082
       REDIS_HOST: caching-db
       REDIS_PORT: 6379
+      RABBIT_HOST: mony-queue
+      RABBIT_PORT: 5672
+      RABBIT_USER: guest
+      RABBIT_PASSWORD: guest
     volumes:
       - ./uploads:/app/uploads
     depends_on:
