@@ -6,7 +6,7 @@ services:
     ports:
       - 5672:5672
       - 15672:15672
-  
+
   logging-db:
     image: mongo:4
     restart: always
@@ -64,16 +64,28 @@ services:
       - ./database/loan-application-service:/var/lib/mysql
 
   scoring-service-database:
-      image: mariadb:10
-      ports:
-        - 3309:3306
-      restart: always
-      command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_unicode_ci
-      environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: scoring_service
-      volumes:
-        - ./database/scoring-service:/var/lib/mysql
+    image: mariadb:10
+    ports:
+      - 3309:3306
+    restart: always
+    command: mysqld --innodb-flush-method=littlesync --innodb-use-native-aio=OFF --log_bin=ON --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: scoring_service
+    volumes:
+      - ./database/scoring-service-database:/var/lib/mysql
+
+  identity-service-database:
+    image: mariadb:10
+    ports:
+      - 3310:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: identity_service
+    volumes:
+      - ./database/identity-service-database:/var/lib/mysql
+    command: mysqld --innodb-flush-method=littlesync --innodb-use-native-aio=OFF --log_bin=ON --character-set-server=utf8 --collation-server=utf8_unicode_ci
 
   api-gateway:
     build:
@@ -120,7 +132,7 @@ services:
       - account-service-database
       - im-service
       - api-gateway
- 
+
   loan-service:
     build:
       context: ./loan-service
@@ -222,6 +234,22 @@ services:
     depends_on:
       - scoring-service-database
       - logging-db
+      - api-gateway
+
+  identity-service:
+    build:
+      context: ./identity-service
+      dockerfile: Dockerfile.prod
+    restart: always
+    ports:
+      - 8086:8086
+    environment:
+      DATABASE_SOURCE: jdbc:mariadb://scoring-service-database:3310/identity_service
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root
+      API_GATEWAY_URL: http://api-gateway:8079
+    depends_on:
+      - identity-service-database
       - api-gateway
 
   admin-cp:
