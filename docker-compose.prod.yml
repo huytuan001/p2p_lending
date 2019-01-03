@@ -99,6 +99,7 @@ services:
       ACCOUNT_SERVICE: http://account-service:8081
       LOAN_SERVICE: http://loan-service:8082
       LOAN_APPLICATION_SERVICE: http://loan-application-service:8083
+      LOGGING_SERVICE: http://logging-service:8084
 
   im-service:
     build:

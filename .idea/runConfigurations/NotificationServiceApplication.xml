@@ -5,9 +5,6 @@
     <option name="ALTERNATIVE_JRE_PATH" />
     <envs>
       <env name="API_GATEWAY_URL" value="http://127.0.0.1:8079" />
-      <env name="spring.profiles.active" value="" />
-      <env name="PHONENUMBER_NOT_OTP_ACTIVE " value="" />
-      <env name="OTP_ACTIVE" value="" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
