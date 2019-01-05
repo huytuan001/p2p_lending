@@ -100,6 +100,7 @@ services:
       LOAN_SERVICE: http://loan-service:8082
       LOAN_APPLICATION_SERVICE: http://loan-application-service:8083
       LOGGING_SERVICE: http://logging-service:8084
+      IDENTITY_SERVICE: http://identity-service:8086
 
   im-service:
     build:
