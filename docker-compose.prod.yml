@@ -129,6 +129,7 @@ services:
       IM_SERVICE_CALLBACK: http://account-service:8081
       LOAN_SERVICE: http://loan-service:8082
       SCORING_SERVICE: http://scoring-service:8085
+      IDENTITY_SERVICE: http://identity-service:8086
       RABBIT_HOST: mony-queue
       RABBIT_PORT: 5672
       RABBIT_USER: guest
@@ -155,6 +156,7 @@ services:
       LOAN_APPLICATION_SERVICE: http://loan-application-service:8083
       IM_SERVICE_CALLBACK: http://loan-service:8082
       SELF_SERVICE: http://loan-service:8082
+      IDENTITY_SERVICE: http://identity-service:8086
       REDIS_HOST: caching-db
       REDIS_PORT: 6379
       RABBIT_HOST: mony-queue
