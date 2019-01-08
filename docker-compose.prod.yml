@@ -252,7 +252,7 @@ services:
     ports:
       - 8086:8086
     environment:
-      DATABASE_SOURCE: jdbc:mariadb://scoring-service-database:3310/identity_service
+      DATABASE_SOURCE: jdbc:mariadb://identity-service-database:3310/identity_service
       DATABASE_USER: root
       DATABASE_PASSWORD: root
       API_GATEWAY_URL: http://api-gateway:8079
