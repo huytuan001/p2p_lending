@@ -11,6 +11,7 @@
       <env name="DATABASE_PASSWORD" value="root" />
       <env name="ACCOUNT_SERVICE" value="http://localhost:8081" />
       <env name="LOAN_APPLICATION_SERVICE" value="http://localhost:8083" />
+      <env name="LOGGING_SERVICE" value="http://localhost:8084" />
       <env name="IM_SERVICE" value="http://localhost:8080" />
       <env name="IM_SERVICE_CALLBACK" value="http://localhost:8080" />
       <env name="SELF_SERVICE" value="http://localhost:8082" />
