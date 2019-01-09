@@ -23,6 +23,7 @@
       <env name="RABBIT_PORT" value="5672" />
       <env name="RABBIT_USER" value="guest" />
       <env name="RABBIT_PASSWORD" value="guest" />
+      <env name="ASSIGN_LOAN_TIME" value="120000" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
