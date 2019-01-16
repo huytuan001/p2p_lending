@@ -1,0 +1,26 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="LoggingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="vn.five9.logging-service.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="vn.mony.logging_service.LoggingApplication" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
+    <envs>
+      <env name="DATABASE_SOURCE" value="jdbc:mysql://127.0.0.1:3306/account-service?useUnicode=yes&amp;characterEncoding=UTF-8&amp;useSSL=false" />
+      <env name="DATABASE_USER" value="root" />
+      <env name="DATABASE_PASSWORD" value="root" />
+      <env name="API_GATEWAY_URL" value="http://localhost:8079" />
+      <env name="MONGO_HOST" value="127.0.0.1" />
+      <env name="MONGO_PORT" value="27017" />
+      <env name="MONGO_USER" value="root" />
+      <env name="MONGO_PASSWORD" value="root" />
+      <env name="RABBIT_HOST" value="localhost" />
+      <env name="RABBIT_PORT" value="5672" />
+      <env name="RABBIT_USER" value="guest" />
+      <env name="RABBIT_PASSWORD" value="guest" />
+      <env name="ACCOUNT_SERVICE" value="http://localhost:8081" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
