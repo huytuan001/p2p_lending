@@ -20,7 +20,7 @@
       <env name="RABBIT_USER" value="guest" />
       <env name="RABBIT_PASSWORD" value="guest" />
       <env name="ASSIGN_LOAN_TIME" value="120000" />
-      <env name="BAOKIM_URL" value="http://210.245.83.82:9095/Golive/FirmBanking" />
+      <env name="BAOKIM_URL" value="http://54.255.180.52:9095/Sandbox/FirmBanking" />
       <env name="BAOKIM_CODE" value="MONY" />
     </envs>
     <method v="2">
