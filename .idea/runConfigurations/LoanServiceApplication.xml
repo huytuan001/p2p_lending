@@ -1,8 +1,10 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="LoanServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="loan-service_main" />
+    <module name="vn.five9.mony.loan-service.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="vn.mony.loan_service.LoanServiceApplication" />
-    <option name="ALTERNATIVE_JRE_PATH" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+    <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
     <envs>
       <env name="DATABASE_SOURCE" value="jdbc:mysql://127.0.0.1:3307/loan-service?useUnicode=yes&amp;characterEncoding=UTF-8&amp;useSSL=false" />
       <env name="DATABASE_USER" value="root" />
@@ -22,6 +24,8 @@
       <env name="ASSIGN_LOAN_TIME" value="120000" />
       <env name="BAOKIM_URL" value="http://54.255.180.52:9095/Sandbox/FirmBanking" />
       <env name="BAOKIM_CODE" value="MONY" />
+      <env name="BAOKIM_PRIVATE_KEY" value="/private_key_sandbox.pem" />
+      <env name="BAOKIM_PUBLIC_KEY" value="/public_key_sandbox.pem" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
