@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe
+      convert -f .\docker-compose.prod.yml -o k8s
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: identity-service-database
+  name: identity-service-database
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: identity-service-database
+    spec:
+      containers:
+      - args:
+        - mysqld
+        - --innodb-flush-method=littlesync
+        - --innodb-use-native-aio=OFF
+        - --log_bin=ON
+        - --character-set-server=utf8
+        - --collation-server=utf8_unicode_ci
+        env:
+        - name: MYSQL_DATABASE
+          value: identity_service
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+        image: mariadb:10
+        name: identity-service-database
+        ports:
+        - containerPort: 3306
+        resources: {}
+      restartPolicy: Always
+status: {}
