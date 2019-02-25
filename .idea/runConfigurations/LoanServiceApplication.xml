@@ -24,6 +24,11 @@
       <env name="RABBIT_USER" value="guest" />
       <env name="RABBIT_PASSWORD" value="guest" />
       <env name="ASSIGN_LOAN_TIME" value="120000" />
+      <env name="BAOKIM_URL" value="http://54.255.180.52:9095/Sandbox/FirmBanking" />
+      <env name="BAOKIM_CODE" value="MONY" />
+      <env name="BAOKIM_PRIVATE_KEY" value="/private_key_sandbox.pem" />
+      <env name="BAOKIM_PUBLIC_KEY" value="/public_key_sandbox.pem" />
+      <env name="BAOKIM_AUTH" value="false" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
