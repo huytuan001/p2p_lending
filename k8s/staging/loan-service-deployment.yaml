@@ -1,0 +1,80 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.staging.yml -o k8s/staging/
+    kompose.version: 1.17.0 ()
+  creationTimestamp: null
+  labels:
+    io.kompose.service: loan-service
+  name: loan-service
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: loan-service
+    spec:
+      containers:
+      - env:
+        - name: ACCOUNT_SERVICE
+          value: http://account-service:8081
+        - name: API_GATEWAY_URL
+          value: http://api-gateway:8079
+        - name: ASSIGN_LOAN_TIME
+          value: "120000"
+        - name: BAOKIM_CODE
+          value: MONY
+        - name: BAOKIM_PRIVATE_KEY
+          value: /private_key_sandbox.pem
+        - name: BAOKIM_PUBLIC_KEY
+          value: /public_key_sandbox.pem
+        - name: BAOKIM_URL
+          value: http://13.250.110.81:9095/Sandbox/FirmBanking
+        - name: DATABASE_PASSWORD
+          value: root
+        - name: DATABASE_SOURCE
+          value: jdbc:mariadb://lending-platform-database:3305/loan-service
+        - name: DATABASE_USER
+          value: root
+        - name: IDENTITY_SERVICE
+          value: http://identity-service:8086
+        - name: IM_SERVICE
+          value: http://im-service:8080
+        - name: IM_SERVICE_CALLBACK
+          value: http://loan-service:8082
+        - name: LOAN_APPLICATION_SERVICE
+          value: http://loan-application-service:8083
+        - name: LOGGING_SERVICE
+          value: http://logging-service:8084
+        - name: RABBIT_HOST
+          value: mony-queue
+        - name: RABBIT_PASSWORD
+          value: guest
+        - name: RABBIT_PORT
+          value: "5672"
+        - name: RABBIT_USER
+          value: guest
+        - name: REDIS_HOST
+          value: caching-db
+        - name: REDIS_PORT
+          value: "6379"
+        - name: SELF_SERVICE
+          value: http://loan-service:8082
+        image: loan-service
+        name: loan-service
+        ports:
+        - containerPort: 8082
+        resources: {}
+        volumeMounts:
+        - mountPath: /app/uploads
+          name: loan-service-claim0
+      restartPolicy: Always
+      volumes:
+      - name: loan-service-claim0
+        persistentVolumeClaim:
+          claimName: loan-service-claim0
+status: {}

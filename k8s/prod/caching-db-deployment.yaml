@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.prod.yml -o k8s/prod/
+    kompose.version: 1.17.0 ()
+  creationTimestamp: null
+  labels:
+    io.kompose.service: caching-db
+  name: caching-db
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: caching-db
+    spec:
+      containers:
+      - image: redis
+        name: caching-db
+        ports:
+        - containerPort: 6379
+        resources: {}
+        volumeMounts:
+        - mountPath: /data
+          name: caching-db-claim0
+      restartPolicy: Always
+      volumes:
+      - name: caching-db-claim0
+        persistentVolumeClaim:
+          claimName: caching-db-claim0
+status: {}

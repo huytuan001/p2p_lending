@@ -1,0 +1,54 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.prod.yml -o k8s/prod/
+    kompose.version: 1.17.0 ()
+  creationTimestamp: null
+  labels:
+    io.kompose.service: logging-service
+  name: logging-service
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: logging-service
+    spec:
+      containers:
+      - env:
+        - name: API_GATEWAY_URL
+          value: http://api-gateway:8079
+        - name: IDENTITY_SERVICE
+          value: http://identity-service:8086
+        - name: IM_SERVICE
+          value: http://im-service:8080
+        - name: IM_SERVICE_CALLBACK
+          value: http://account-service:8081
+        - name: LOAN_SERVICE
+          value: http://loan-service:8082
+        - name: MONGO_HOST
+          value: logging-db
+        - name: MONGO_PASSWORD
+          value: root
+        - name: MONGO_PORT
+          value: "27017"
+        - name: MONGO_USER
+          value: root
+        - name: RABBIT_HOST
+          value: mony-queue
+        - name: RABBIT_PASSWORD
+          value: guest
+        - name: RABBIT_PORT
+          value: "5672"
+        - name: RABBIT_USER
+          value: guest
+        image: logging-service
+        name: logging-service
+        ports:
+        - containerPort: 8084
+        resources: {}
+      restartPolicy: Always
+status: {}

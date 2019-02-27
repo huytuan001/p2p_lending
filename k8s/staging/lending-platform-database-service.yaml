@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.staging.yml -o k8s/staging/
+    kompose.version: 1.17.0 ()
+    kompose.volume.size: 5Gi
+  creationTimestamp: null
+  labels:
+    io.kompose.service: lending-platform-database
+  name: lending-platform-database
+spec:
+  ports:
+  - name: "3305"
+    port: 3305
+    targetPort: 3306
+  selector:
+    io.kompose.service: lending-platform-database
+status:
+  loadBalancer: {}
