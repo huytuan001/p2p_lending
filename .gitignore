@@ -31,13 +31,14 @@
 
 
 ### P2P Lending platform
-/account-service/
-/loan-service/
-/im-service/
-/loan-application-service/
-/admin-cp/
+!.idea/rßunConfigurations/
 /api-gateway/
+/im-service/
+/account-service/
+/loan-application-service/
+/loan-service/
 /scoring-service/
 /logging-service/
-/central-config/
-!.idea/runConfigurations/
+/identity-service/
+/config-service/
+/admin-cp/

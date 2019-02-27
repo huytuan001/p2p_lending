@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.prod.yml -o k8s/prod/
+    kompose.version: 1.17.0 ()
+    kompose.volume.size: 5Gi
+  creationTimestamp: null
+  labels:
+    io.kompose.service: logging-db
+  name: logging-db
+spec:
+  ports:
+  - name: "27017"
+    port: 27017
+    targetPort: 27017
+  selector:
+    io.kompose.service: logging-db
+status:
+  loadBalancer: {}
