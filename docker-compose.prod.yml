@@ -6,6 +6,7 @@ services:
     ports:
       - 5672:5672
       - 15672:15672
+
   logging-db:
     image: mongo
     restart: always
@@ -15,20 +16,10 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: mony
+    labels: 
+      kompose.volume.size: 5Gi
     volumes:
-      - /data/db
-
-  ascore-raw-db:
-    image: mongo
-    restart: always
-    ports:
-    - 27018:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
-      MONGO_INITDB_DATABASE: ascore-raw
-    volumes:
-    - /data/db
+      - ./database/logging-db:/data/db
 
   caching-db:
     image: redis
@@ -37,54 +28,6 @@ services:
       - 6379:6379
     volumes:
       - ./database/redis-db:/data
-
-  account-service-database:
-    image: mysql
-    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_unicode_ci
-    ports:
-      - 3306:3306
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: account-service
-    volumes:
-      - ./database/account-service:/var/lib/mysql
-
-  loan-service-database:
-    image: mysql
-    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_unicode_ci
-    ports:
-      - 3307:3306
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: loan-service
-    volumes:
-      - ./database/loan-service:/var/lib/mysql
-
-  loan-application-service-database:
-    image: mysql
-    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_unicode_ci
-    ports:
-      - 3308:3306
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: loan-application-service
-    volumes:
-      - ./database/loan-application-service:/var/lib/mysql
-
-  scoring-service-database:
-      image: mysql:8.0.13
-      ports:
-      - 3309:3306
-      restart: always
-      command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_unicode_ci
-      environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: scoring-service
-      volumes:
-      - ./database/scoring-service:/var/lib/mysql
 
   api-gateway:
     build:
@@ -97,7 +40,10 @@ services:
       NOTIFICATION_SERVICE: http://im-service:8080
       ACCOUNT_SERVICE: http://account-service:8081
       LOAN_SERVICE: http://loan-service:8082
-      LOAN_APPLICATION_SERVICE: http://loan-application-service:8083
+      LOAN_APPLICATION_SERVICE: http://loan-service:8083
+      LOGGING_SERVICE: http://logging-service:8084
+      SCORING_SERVICE: http://scoring-service:8085
+      IDENTITY_SERVICE: http://identity-service:8086
 
   im-service:
     build:
@@ -119,17 +65,22 @@ services:
     ports:
       - 8081:8081
     environment:
-      DATABASE_SOURCE: jdbc:mysql://account-service-database:3306/account-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/account-service
       DATABASE_USER: root
       DATABASE_PASSWORD: root
       API_GATEWAY_URL: http://api-gateway:8079
       IM_SERVICE: http://im-service:8080
-      IM_SERVICE_CALLBACK: http://account-service:8081
       LOAN_SERVICE: http://loan-service:8082
+      IM_SERVICE_CALLBACK: http://account-service:8081
+      LOGGING_SERVICE: http://logging-service:8084
+      IDENTITY_SERVICE: http://identity-service:8086
+      RABBIT_HOST : mony-queue
+      RABBIT_PASSWORD: guest
+      RABBIT_PORT: 5672
+      RABBIT_USER: guest
     depends_on:
-      - account-service-database
-      - im-service
       - api-gateway
+      - im-service
 
   loan-service:
     build:
@@ -139,24 +90,34 @@ services:
       - 8082:8082
     restart: always
     environment:
-      DATABASE_SOURCE: jdbc:mysql://loan-service-database:3306/loan-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/loan-service
       DATABASE_USER: root
       DATABASE_PASSWORD: root
       API_GATEWAY_URL: http://api-gateway:8079
       IM_SERVICE: http://im-service:8080
       ACCOUNT_SERVICE: http://account-service:8081
       LOAN_APPLICATION_SERVICE: http://loan-application-service:8083
+      LOGGING_SERVICE: http://logging-service:8084
+      IDENTITY_SERVICE: http://identity-service:8086
       IM_SERVICE_CALLBACK: http://loan-service:8082
       SELF_SERVICE: http://loan-service:8082
       REDIS_HOST: caching-db
       REDIS_PORT: 6379
+      RABBIT_HOST: mony-queue
+      RABBIT_PASSWORD: guest
+      RABBIT_PORT: 5672
+      RABBIT_USER: guest
+      ASSIGN_LOAN_TIME: 120000
+      BAOKIM_URL: http://210.245.83.82:9095/Golive/FirmBanking
+      BAOKIM_CODE: MONY
+      BAOKIM_PRIVATE_KEY: /privatekey_golive.pem
+      BAOKIM_PUBLIC_KEY: /publickey_golive.pem
     volumes:
       - ./uploads:/app/uploads
     depends_on:
-      - loan-service-database
-      - account-service
-      - im-service
       - api-gateway
+      - im-service
+      - account-service
 
   loan-application-service:
     build:
@@ -166,20 +127,68 @@ services:
       - 8083:8083
     restart: always
     environment:
-      DATABASE_SOURCE: jdbc:mysql://loan-application-service-database:3306/loan-application-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/loan-application-service
       DATABASE_USER: root
       DATABASE_PASSWORD: root
       API_GATEWAY_URL: http://api-gateway:8079
       IM_SERVICE: http://im-service:8080
       ACCOUNT_SERVICE: http://account-service:8081
       LOAN_SERVICE: http://loan-service:8082
+      IDENTITY_SERVICE: http://identity-service:8086
       IM_SERVICE_CALLBACK: http://loan-application-service:8083
       SELF_SERVICE: http://loan-application-service:8083
     depends_on:
-      - loan-application-service-database
+      - api-gateway
       - im-service
       - account-service
       - loan-service
+
+  logging-service:
+    build:
+      context: ./logging-service
+      dockerfile: Dockerfile.prod
+    restart: always
+    ports:
+      - 8084:8084
+    environment:
+      API_GATEWAY_URL: http://api-gateway:8079
+      IM_SERVICE: http://im-service:8080
+      LOAN_SERVICE: http://loan-service:8082
+      IDENTITY_SERVICE: http://identity-service:8086
+      IM_SERVICE_CALLBACK: http://account-service:8081
+      MONGO_HOST: logging-db
+      MONGO_PORT: "27017"
+      MONGO_USER: root
+      MONGO_PASSWORD: root
+      RABBIT_HOST : mony-queue
+      RABBIT_PORT: 5672
+      RABBIT_USER: guest
+      RABBIT_PASSWORD: guest
+    depends_on:
+      - api-gateway
+      - im-service
+
+  scoring-service:
+    build:
+      context: ./scoring-service
+      dockerfile: Dockerfile.prod
+    restart: always
+    ports:
+      - 8085:8085
+    environment:
+      API_GATEWAY_URL: http://api-gateway:8079 
+      IDENTITY_SERVICE: http://identity-service:8086
+      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/scoring-service
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root
+      MONGO_HOST: logging-db
+      MONGO_PORT: 27018
+      MONGO_USER: root
+      MONGO_PASSWORD: root
+      MONGO_AUTH: admin
+      MONGO_DATABASE: ascore-raw
+    depends_on:
+      - scoring-service-database
       - api-gateway
 
   admin-cp:
@@ -189,24 +198,3 @@ services:
     ports:
       - 80:80
     restart: always
-
-  scoring-service:
-      build:
-        context: ./scoring-service
-        dockerfile: Dockerfile.prod
-      restart: always
-      ports:
-      - 8084:8084
-      environment:
-        DATABASE_SOURCE: jdbc:mysql://scoring-service-database:3309/account-service?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
-        DATABASE_USER: root
-        DATABASE_PASSWORD: root
-        MONGO_HOST: ascore-raw-db
-        MONGO_PORT: 27018
-        MONGO_USER: root
-        MONGO_PASSWORD: root
-        MONGO_DATABASE: ascore-raw
-        MONGO_AUTH: admin
-      depends_on:
-      - scoring-service-database
-      - api-gateway
