@@ -67,12 +67,12 @@ services:
     environment:
       API_GATEWAY_URL: http://api-gateway:8079
       SPRING_APPLICATION: im-serivce-dev
-      SPRING_CLOUD_CONFIG_URI: http://private_configuration:8888
+      SPRING_CLOUD_CONFIG_URI: http://private-configuration:8888
     ports:
       - 8080:8080
     depends_on:
       - api-gateway
-      - private_configuration
+      - private-configuration
 
   account-service:
     build:
@@ -232,9 +232,9 @@ services:
       - 80:80
     restart: always
 
-  private_configuration:
+  private-configuration:
     build:
-      context: ./private_configuration
+      context: ./private-configuration
       dockerfile: Dockerfile.prod
       restart: always
       ports:
