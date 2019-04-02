@@ -5,6 +5,8 @@
     <option name="ALTERNATIVE_JRE_PATH" />
     <envs>
       <env name="API_GATEWAY_URL" value="http://127.0.0.1:8079" />
+      <env name="SPRING_APPLICATION" value="im-serivce-dev" />
+      <env name="SPRING_CLOUD_CONFIG_URI" value="http://localhost:8888" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
