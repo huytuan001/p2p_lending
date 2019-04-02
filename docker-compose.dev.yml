@@ -66,10 +66,13 @@ services:
     restart: always
     environment:
       API_GATEWAY_URL: http://api-gateway:8079
+      SPRING_APPLICATION: im-serivce-dev
+      SPRING_CLOUD_CONFIG_URI: http://private_configuration:8888
     ports:
       - 8080:8080
     depends_on:
       - api-gateway
+      - private_configuration
 
   account-service:
     build:
@@ -228,3 +231,15 @@ services:
     ports:
       - 80:80
     restart: always
+
+  private_configuration:
+    build:
+      context: ./private_configuration
+      dockerfile: Dockerfile.prod
+      restart: always
+      ports:
+      - 8888:8888
+      environment:
+        SERVER_GIT_URI: https://github.com/vinatabaht/monyconfiguration
+        SERVER_GIT_USERNAME: tuanhoanganh1988@gmail.com
+        SERVER_GIT_PASSWORD: a0803l33
