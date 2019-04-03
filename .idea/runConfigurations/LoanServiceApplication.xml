@@ -30,6 +30,8 @@
       <env name="BAOKIM_PUBLIC_KEY" value="/public_key_sandbox.pem" />
       <env name="BAOKIM_AUTH" value="false" />
       <env name="TIME_BACK_START_MONTH" value="1" />
+      <env name="SPRING_APPLICATION" value="loan-application-service-dev" />
+      <env name="SPRING_CLOUD_CONFIG_URI" value="http://localhost:8888" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />

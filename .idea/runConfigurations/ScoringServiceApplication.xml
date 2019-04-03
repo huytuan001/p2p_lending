@@ -13,6 +13,8 @@
       <env name="MONGO_PASSWORD" value="root" />
       <env name="MONGO_DATABASE" value="ascore-raw" />
       <env name="MONGO_AUTH" value="admin" />
+      <env name="SPRING_APPLICATION" value="scoring-service-dev" />
+      <env name="SPRING_CLOUD_CONFIG_URI" value="http://localhost:8888" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />

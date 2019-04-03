@@ -19,6 +19,8 @@
       <env name="RABBIT_USER" value="guest" />
       <env name="RABBIT_PASSWORD" value="guest" />
       <env name="ACCOUNT_SERVICE" value="http://localhost:8081" />
+      <env name="SPRING_APPLICATION" value="logging-service-dev" />
+      <env name="SPRING_CLOUD_CONFIG_URI" value="http://localhost:8888" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
