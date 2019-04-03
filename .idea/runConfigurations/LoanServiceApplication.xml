@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="LoanServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="vn.five9.mony.loan-service.main" />
+    <module name="loan-service_main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="vn.mony.loan_service.LoanServiceApplication" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
@@ -11,10 +11,12 @@
       <env name="DATABASE_PASSWORD" value="root" />
       <env name="ACCOUNT_SERVICE" value="http://localhost:8081" />
       <env name="LOAN_APPLICATION_SERVICE" value="http://localhost:8083" />
+      <env name="LOGGING_SERVICE" value="http://localhost:8084" />
       <env name="IM_SERVICE" value="http://localhost:8080" />
       <env name="IM_SERVICE_CALLBACK" value="http://localhost:8080" />
       <env name="SELF_SERVICE" value="http://localhost:8082" />
       <env name="API_GATEWAY_URL" value="http://localhost:8079" />
+      <env name="IDENTITY_SERVICE" value="http://localhost:8086" />
       <env name="REDIS_HOST" value="localhost" />
       <env name="REDIS_PORT" value="6379" />
       <env name="RABBIT_HOST" value="localhost" />
@@ -26,6 +28,8 @@
       <env name="BAOKIM_CODE" value="MONY" />
       <env name="BAOKIM_PRIVATE_KEY" value="/private_key_sandbox.pem" />
       <env name="BAOKIM_PUBLIC_KEY" value="/public_key_sandbox.pem" />
+      <env name="BAOKIM_AUTH" value="false" />
+      <env name="TIME_BACK_START_MONTH" value="1" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
