@@ -19,6 +19,8 @@
       <env name="RABBIT_PORT" value="5672" />
       <env name="RABBIT_USER" value="guest" />
       <env name="RABBIT_PASSWORD" value="guest" />
+      <env name="SPRING_APPLICATION" value="account-service-dev" />
+      <env name="SPRING_CLOUD_CONFIG_URI" value="http://localhost:8888" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
