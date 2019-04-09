@@ -21,6 +21,10 @@ spec:
       - env:
         - name: API_GATEWAY_URL
           value: http://api-gateway:8079
+        - name: SPRING_APPLICATION
+          value: im-serivce-dev
+        - name: SPRING_CLOUD_CONFIG_URI
+          value: http://private-configuration:8888
         image: im-service
         name: im-service
         ports:

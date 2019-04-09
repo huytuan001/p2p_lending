@@ -2,9 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe
-      convert -f .\docker-compose.prod.yml -o k8s
-    kompose.version: 1.16.0 (0c01309)
+    kompose.cmd: kompose convert -f docker-compose.prod.yml -o k8s/prod/
+    kompose.version: 1.17.0 ()
   creationTimestamp: null
   labels:
     io.kompose.service: identity-service

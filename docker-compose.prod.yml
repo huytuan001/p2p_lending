@@ -29,6 +29,18 @@ services:
     volumes:
       - ./database/redis-db:/data
 
+  config-service:
+    build:
+      context: ./config-service
+      dockerfile: Dockerfile.prod
+    restart: always
+    ports:
+      - 8888:8888
+    environment:
+      SERVER_GIT_URI: http://192.168.105.11:7990/scm/p2p/shared-configuration.git
+      SERVER_GIT_USERNAME: tuanha
+      SERVER_GIT_PASSWORD: a0803l33
+
   api-gateway:
     build:
       context: ./api-gateway
@@ -44,6 +56,22 @@ services:
       LOGGING_SERVICE: http://logging-service:8084
       SCORING_SERVICE: http://scoring-service:8085
       IDENTITY_SERVICE: http://identity-service:8086
+
+  identity-service:
+    build:
+      context: ./identity-service
+      dockerfile: Dockerfile.prod
+    restart: always
+    ports:
+      - 8086:8086
+    environment:
+      API_GATEWAY_URL: http://api-gateway:8079
+      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/identity-service
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root
+    depends_on:
+      - api-gateway
+      - im-service
 
   im-service:
     build:
@@ -188,7 +216,6 @@ services:
       MONGO_AUTH: admin
       MONGO_DATABASE: ascore-raw
     depends_on:
-      - scoring-service-database
       - api-gateway
 
   admin-cp:

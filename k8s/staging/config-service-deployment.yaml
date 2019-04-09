@@ -2,12 +2,12 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: kompose convert -f docker-compose.dev.yml -o k8s/dev/
+    kompose.cmd: kompose convert -f docker-compose.staging.yml -o k8s/staging/
     kompose.version: 1.17.0 ()
   creationTimestamp: null
   labels:
-    io.kompose.service: private-configuration
-  name: private-configuration
+    io.kompose.service: config-service
+  name: config-service
 spec:
   replicas: 1
   strategy: {}
@@ -15,18 +15,18 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service: private-configuration
+        io.kompose.service: config-service
     spec:
       containers:
       - env:
         - name: SERVER_GIT_PASSWORD
           value: a0803l33
         - name: SERVER_GIT_URI
-          value: https://github.com/vinatabaht/monyconfiguration
+          value: http://192.168.105.11:7990/scm/p2p/shared-configuration.git
         - name: SERVER_GIT_USERNAME
-          value: tuanhoanganh1988@gmail.com
-        image: private-configuration
-        name: private-configuration
+          value: tuanha
+        image: config-service
+        name: config-service
         ports:
         - containerPort: 8888
         resources: {}
