@@ -43,10 +43,38 @@ services:
     volumes:
       - ./database/lending-platform:/var/lib/mysql
 
+  config-service:
+    build:
+      context: ./config-service
+      dockerfile: Dockerfile.staging
+    restart: always
+    ports:
+      - 8888:8888
+    environment:
+      SERVER_GIT_URI: http://192.168.105.11:7990/scm/p2p/shared-configuration.git
+      SERVER_GIT_USERNAME: tuanha
+      SERVER_GIT_PASSWORD: a0803l33
+
+  identity-service:
+    build:
+      context: ./identity-service
+      dockerfile: Dockerfile.staging
+    restart: always
+    ports:
+      - 8086:8086
+    environment:
+      API_GATEWAY_URL: http://api-gateway:8079
+      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/identity-service
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root
+    depends_on:
+      - api-gateway
+      - im-service
+
   api-gateway:
     build:
       context: ./api-gateway
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.staging
     restart: always
     ports:
       - 8079:8079
@@ -62,7 +90,7 @@ services:
   im-service:
     build:
       context: ./im-service
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.staging
     restart: always
     environment:
       API_GATEWAY_URL: http://api-gateway:8079
@@ -74,7 +102,7 @@ services:
   account-service:
     build:
       context: ./account-service
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.staging
     restart: always
     ports:
       - 8081:8081
@@ -99,7 +127,7 @@ services:
   loan-service:
     build:
       context: ./loan-service
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.staging
     ports:
       - 8082:8082
     restart: always
@@ -136,7 +164,7 @@ services:
   loan-application-service:
     build:
       context: ./loan-application-service
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.staging
     ports:
       - 8083:8083
     restart: always
@@ -160,7 +188,7 @@ services:
   logging-service:
     build:
       context: ./logging-service
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.staging
     restart: always
     ports:
       - 8084:8084
@@ -185,7 +213,7 @@ services:
   scoring-service:
     build:
       context: ./scoring-service
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.staging
     restart: always
     ports:
       - 8085:8085
@@ -202,13 +230,12 @@ services:
       MONGO_AUTH: admin
       MONGO_DATABASE: ascore-raw
     depends_on:
-      - scoring-service-database
       - api-gateway
   
   admin-cp:
     build:
       context: ./admin-cp
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.staging
     ports:
       - 80:80
     restart: always

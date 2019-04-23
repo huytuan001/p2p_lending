@@ -1,0 +1,21 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <module name="private-configuration_main" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.mony.configserver.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.mony.configserver.ConfigServerApplication" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <envs>
+      <env name="SERVER_GIT_URI" value="https://github.com/vinatabaht/monyconfiguration" />
+      <env name="SERVER_GIT_USERNAME" value="tuanhoanganh1988@gmail.com" />
+      <env name="SERVER_GIT_PASSWORD" value="a0803l33" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

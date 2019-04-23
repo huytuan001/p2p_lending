@@ -13,6 +13,8 @@
       <env name="IM_SERVICE_CALLBACK" value="http://localhost:8083" />
       <env name="SELF_SERVICE" value="http://localhost:8083" />
       <env name="API_GATEWAY_URL" value="http://localhost:8079" />
+      <env name="SPRING_APPLICATION" value="loan-application-service-dev" />
+      <env name="SPRING_CLOUD_CONFIG_URI" value="http://localhost:8888" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />

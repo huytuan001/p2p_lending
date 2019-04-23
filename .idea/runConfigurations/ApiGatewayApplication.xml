@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="vn.five9.mony.api-gateway.main" />
+    <module name="api-gateway_main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="vn.mony.apigateway.ApiGatewayApplication" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
@@ -12,6 +12,8 @@
       <env name="NOTIFICATION_SERVICE " value="http://localhost:8080" />
       <env name="LOGGING_SERVICE" value="http://localhost:8084" />
       <env name="IDENTITY_SERVICE" value="http://localhost:8086" />
+      <env name="SPRING_APPLICATION" value="api-gateway-dev" />
+      <env name="SPRING_CLOUD_CONFIG_URI" value="http://localhost:8888" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />

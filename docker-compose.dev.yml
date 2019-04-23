@@ -46,7 +46,7 @@ services:
   api-gateway:
     build:
       context: ./api-gateway
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.dev
     restart: always
     ports:
       - 8079:8079
@@ -62,19 +62,22 @@ services:
   im-service:
     build:
       context: ./im-service
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.dev
     restart: always
     environment:
       API_GATEWAY_URL: http://api-gateway:8079
+      SPRING_APPLICATION: im-serivce-dev
+      SPRING_CLOUD_CONFIG_URI: http://private-configuration:8888
     ports:
       - 8080:8080
     depends_on:
       - api-gateway
+      - private-configuration
 
   account-service:
     build:
       context: ./account-service
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.dev
     restart: always
     ports:
       - 8081:8081
@@ -99,7 +102,7 @@ services:
   loan-service:
     build:
       context: ./loan-service
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.dev
     ports:
       - 8082:8082
     restart: always
@@ -136,7 +139,7 @@ services:
   loan-application-service:
     build:
       context: ./loan-application-service
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.dev
     ports:
       - 8083:8083
     restart: always
@@ -160,7 +163,7 @@ services:
   logging-service:
     build:
       context: ./logging-service
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.dev
     restart: always
     ports:
       - 8084:8084
@@ -185,7 +188,7 @@ services:
   scoring-service:
     build:
       context: ./scoring-service
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.dev
     restart: always
     ports:
       - 8085:8085
@@ -202,13 +205,12 @@ services:
       MONGO_AUTH: admin
       MONGO_DATABASE: ascore-raw
     depends_on:
-      - scoring-service-database
       - api-gateway
 
   identity-service:
     build:
       context: ./identity-service
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.dev
     restart: always
     ports:
       - 8086:8086
@@ -224,7 +226,19 @@ services:
   admin-cp:
     build:
       context: ./admin-cp
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.dev
     ports:
       - 80:80
     restart: always
+
+  private-configuration:
+    build:
+      context: ./config-service
+      dockerfile: Dockerfile.dev
+    restart: always
+    ports:
+      - 8888:8888
+    environment:
+      SERVER_GIT_URI: https://github.com/vinatabaht/monyconfiguration
+      SERVER_GIT_USERNAME: tuanhoanganh1988@gmail.com
+      SERVER_GIT_PASSWORD: a0803l33
