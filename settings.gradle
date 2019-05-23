@@ -9,9 +9,12 @@
 
 rootProject.name = 'P2PLending'
 
-include 'im-service'
+include 'config-service'
+include 'api-gateway'
+include 'identity-service'
+include 'scoring-service'
 include 'account-service'
 include 'loan-service'
 include 'loan-application-service'
-include 'api-gateway'
-include 'crawl-service'
+include 'im-service'
+include 'logging-service'
