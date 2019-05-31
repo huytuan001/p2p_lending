@@ -7,7 +7,7 @@
  * in the user guide at https://docs.gradle.org/4.7/userguide/multi_project_builds.html
  */
 
-rootProject.name = 'P2PLending'
+rootProject.name = 'CyberLending'
 
 include 'config-service'
 include 'api-gateway'
@@ -18,3 +18,4 @@ include 'loan-service'
 include 'loan-application-service'
 include 'im-service'
 include 'logging-service'
+include 'payment-service'
