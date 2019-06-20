@@ -34,3 +34,15 @@
 2. Cài đặt Docker cho phép truy xuất vào ổ D (hoặc ổ C)
 
 3. Khởi chạy databases của các service: `docker-compose up -d`
+- MariaDB server: 127.0.0.1:3005 root/root
+- Mongo server: 127.0.0.1:27017 root/root
+- RabbitMQ: 127.0.0.1:15672 guest/guest
+
+4. Khởi tạo các databases sau
+- identity_service
+- account_service
+- loan_service
+- loan_application_service
+- scoring_service
+
+5. Chạy các service trên IDE với cấu hình định nghĩa sẵn

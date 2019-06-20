@@ -4,17 +4,16 @@
     <option name="SPRING_BOOT_MAIN_CLASS" value="vn.five9.scoring_service.ScoringServiceApplication" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <envs>
-      <env name="DATABASE_SOURCE" value="jdbc:mariadb://127.0.0.1:3309/scoring_service?useUnicode=yes&amp;characterEncoding=UTF-8&amp;useSSL=false" />
+      <env name="DATABASE_SOURCE" value="jdbc:mariadb://127.0.0.1:3305/scoring_service" />
       <env name="DATABASE_USER" value="root" />
       <env name="DATABASE_PASSWORD" value="root" />
-      <env name="MONGO_HOST" value="192.168.104.70" />
+      <env name="MONGO_HOST" value="127.0.0.1" />
+      <env name="MONGO_PORT" value="27017" />
       <env name="MONGO_PORT" value="32128" />
       <env name="MONGO_USER" value="root" />
       <env name="MONGO_PASSWORD" value="root" />
       <env name="MONGO_DATABASE" value="ascore-raw" />
       <env name="MONGO_AUTH" value="admin" />
-      <env name="SPRING_APPLICATION" value="scoring-service-dev" />
-      <env name="SPRING_CLOUD_CONFIG_URI" value="http://localhost:8888" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
