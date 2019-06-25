@@ -24,7 +24,7 @@ spec:
         - name: DATABASE_PASSWORD
           value: root
         - name: DATABASE_SOURCE
-          value: jdbc:mariadb://lending-platform-database:3305/identity-service
+          value: jdbc:mariadb://lending-platform-database:3305/identity_service
         - name: DATABASE_USER
           value: root
         image: identity-service

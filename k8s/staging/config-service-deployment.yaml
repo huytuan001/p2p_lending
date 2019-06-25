@@ -20,11 +20,11 @@ spec:
       containers:
       - env:
         - name: SERVER_GIT_PASSWORD
-          value: a0803l33
+          value: adminmony
         - name: SERVER_GIT_URI
           value: http://192.168.105.11:7990/scm/p2p/shared-configuration.git
         - name: SERVER_GIT_USERNAME
-          value: tuanha
+          value: Adminmony
         image: config-service
         name: config-service
         ports:
