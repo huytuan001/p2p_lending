@@ -12,6 +12,8 @@
       <env name="LOAN_APPLICATION_SERVICE " value="http://localhost:8083 " />
       <env name="NOTIFICATION_SERVICE " value="http://localhost:8080" />
       <env name="LOGGING_SERVICE" value="http://localhost:8084" />
+      <env name="PAYMENT_SERVICE" value="http://localhost:8089" />
+      <env name="SCORING_SERVICE" value="http://localhost:8085" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />

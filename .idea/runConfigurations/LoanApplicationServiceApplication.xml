@@ -13,6 +13,7 @@
       <env name="IM_SERVICE" value="http://localhost:8080" />
       <env name="IM_SERVICE_CALLBACK" value="http://localhost:8083" />
       <env name="SELF_SERVICE" value="http://localhost:8083" />
+      <env name="IDENTITY_SERVICE" value="http://localhost:8086" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />

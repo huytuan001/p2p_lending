@@ -16,6 +16,7 @@
       <env name="RABBIT_PORT" value="5672" />
       <env name="RABBIT_USER" value="guest" />
       <env name="RABBIT_PASSWORD" value="guest" />
+      <env name="IDENTITY_SERVICE" value="http://localhost:8086" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
