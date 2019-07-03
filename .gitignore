@@ -18,6 +18,7 @@
 
 ### IntelliJ IDEA ###
 .idea
+!.idea/runConfigurations
 *.iws
 *.iml
 *.ipr
@@ -32,13 +33,14 @@
 
 ### P2P Lending platform
 !.idea/rßunConfigurations/
-/api-gateway/
-/im-service/
-/account-service/
-/loan-application-service/
-/loan-service/
-/scoring-service/
-/logging-service/
-/identity-service/
 /config-service/
+/identity-service/
+/api-gateway/
+/account-service/
+/loan-service/
+/loan-application-service/
+/logging-service/
+/scoring-service/
+/im-service/
+/payment-service/
 /admin-cp/

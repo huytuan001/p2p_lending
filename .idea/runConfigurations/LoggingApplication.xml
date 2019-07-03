@@ -6,10 +6,8 @@
     <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
     <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
     <envs>
-      <env name="DATABASE_SOURCE" value="jdbc:mysql://127.0.0.1:3306/account-service?useUnicode=yes&amp;characterEncoding=UTF-8&amp;useSSL=false" />
-      <env name="DATABASE_USER" value="root" />
-      <env name="DATABASE_PASSWORD" value="root" />
       <env name="API_GATEWAY_URL" value="http://localhost:8079" />
+      <env name="ACCOUNT_SERVICE" value="http://localhost:8081" />
       <env name="MONGO_HOST" value="127.0.0.1" />
       <env name="MONGO_PORT" value="27017" />
       <env name="MONGO_USER" value="root" />
@@ -18,9 +16,6 @@
       <env name="RABBIT_PORT" value="5672" />
       <env name="RABBIT_USER" value="guest" />
       <env name="RABBIT_PASSWORD" value="guest" />
-      <env name="ACCOUNT_SERVICE" value="http://localhost:8081" />
-      <env name="SPRING_APPLICATION" value="logging-service-dev" />
-      <env name="SPRING_CLOUD_CONFIG_URI" value="http://localhost:8888" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />

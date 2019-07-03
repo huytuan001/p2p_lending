@@ -4,17 +4,16 @@
     <option name="SPRING_BOOT_MAIN_CLASS" value="vn.mony.loan_application_service.LoanApplicationServiceApplication" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <envs>
-      <env name="DATABASE_SOURCE" value="jdbc:mysql://127.0.0.1:3308/loan-application-service?useUnicode=yes&amp;characterEncoding=UTF-8&amp;useSSL=false" />
+      <env name="DATABASE_SOURCE" value="jdbc:mariadb://127.0.0.1:3305/loan_application_service" />
       <env name="DATABASE_USER" value="root" />
       <env name="DATABASE_PASSWORD" value="root" />
+      <env name="API_GATEWAY_URL" value="http://localhost:8079" />
       <env name="ACCOUNT_SERVICE" value="http://localhost:8081" />
       <env name="LOAN_SERVICE" value="http://localhost:8082" />
       <env name="IM_SERVICE" value="http://localhost:8080" />
       <env name="IM_SERVICE_CALLBACK" value="http://localhost:8083" />
       <env name="SELF_SERVICE" value="http://localhost:8083" />
-      <env name="API_GATEWAY_URL" value="http://localhost:8079" />
-      <env name="SPRING_APPLICATION" value="loan-application-service-dev" />
-      <env name="SPRING_CLOUD_CONFIG_URI" value="http://localhost:8888" />
+      <env name="IDENTITY_SERVICE" value="http://localhost:8086" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />

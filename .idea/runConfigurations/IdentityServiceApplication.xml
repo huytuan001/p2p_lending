@@ -4,12 +4,10 @@
     <option name="SPRING_BOOT_MAIN_CLASS" value="vn.five9.mony.identity_service.IdentityServiceApplication" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <envs>
-      <env name="DATABASE_SOURCE" value="jdbc:mariadb://127.0.0.1:3310/identity_service?useUnicode=yes;characterEncoding=UTF-8;useSSL=false" />
       <env name="DATABASE_USER" value="root" />
       <env name="DATABASE_PASSWORD" value="root" />
       <env name="API_GATEWAY_URL" value="http://localhost:8079" />
-      <env name="SPRING_APPLICATION" value="identity-service-dev" />
-      <env name="SPRING_CLOUD_CONFIG_URI" value="http://localhost:8888" />
+      <env name="DATABASE_SOURCE" value="jdbc:mariadb://127.0.0.1:3305/identity_service" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />

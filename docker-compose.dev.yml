@@ -223,6 +223,16 @@ services:
       - api-gateway
       - im-service
 
+  payment-service:
+    build:
+      context: ./payment-service
+      dockerfile: Dockerfile.dev
+    restart: always
+    ports:
+      - 8089:8089
+    environment:
+      API_GATEWAY_URL: http://api-gateway:8079
+
   admin-cp:
     build:
       context: ./admin-cp
@@ -231,7 +241,7 @@ services:
       - 80:80
     restart: always
 
-  private-configuration:
+  config-service:
     build:
       context: ./config-service
       dockerfile: Dockerfile.dev
@@ -239,6 +249,6 @@ services:
     ports:
       - 8888:8888
     environment:
-      SERVER_GIT_URI: https://github.com/vinatabaht/monyconfiguration
-      SERVER_GIT_USERNAME: tuanhoanganh1988@gmail.com
-      SERVER_GIT_PASSWORD: a0803l33
+      SERVER_GIT_URI: http://192.168.105.11:7990/scm/p2p/shared-configuration.git
+      SERVER_GIT_USERNAME: Adminmony
+      SERVER_GIT_PASSWORD: adminmony

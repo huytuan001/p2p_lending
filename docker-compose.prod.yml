@@ -38,8 +38,8 @@ services:
       - 8888:8888
     environment:
       SERVER_GIT_URI: http://192.168.105.11:7990/scm/p2p/shared-configuration.git
-      SERVER_GIT_USERNAME: tuanha
-      SERVER_GIT_PASSWORD: a0803l33
+      SERVER_GIT_USERNAME: Adminmony
+      SERVER_GIT_PASSWORD: adminmony
 
   api-gateway:
     build:
@@ -66,7 +66,7 @@ services:
       - 8086:8086
     environment:
       API_GATEWAY_URL: http://api-gateway:8079
-      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/identity-service
+      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/identity_service
       DATABASE_USER: root
       DATABASE_PASSWORD: root
     depends_on:
@@ -93,7 +93,7 @@ services:
     ports:
       - 8081:8081
     environment:
-      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/account-service
+      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/account_service
       DATABASE_USER: root
       DATABASE_PASSWORD: root
       API_GATEWAY_URL: http://api-gateway:8079
@@ -118,7 +118,7 @@ services:
       - 8082:8082
     restart: always
     environment:
-      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/loan-service
+      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/loan_service
       DATABASE_USER: root
       DATABASE_PASSWORD: root
       API_GATEWAY_URL: http://api-gateway:8079
@@ -155,7 +155,7 @@ services:
       - 8083:8083
     restart: always
     environment:
-      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/loan-application-service
+      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/loan_application_service
       DATABASE_USER: root
       DATABASE_PASSWORD: root
       API_GATEWAY_URL: http://api-gateway:8079
@@ -206,7 +206,7 @@ services:
     environment:
       API_GATEWAY_URL: http://api-gateway:8079 
       IDENTITY_SERVICE: http://identity-service:8086
-      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/scoring-service
+      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/scoring_service
       DATABASE_USER: root
       DATABASE_PASSWORD: root
       MONGO_HOST: logging-db
