@@ -231,7 +231,17 @@ services:
       MONGO_DATABASE: ascore-raw
     depends_on:
       - api-gateway
-  
+
+  payment-service:
+    build:
+      context: ./payment-service
+      dockerfile: Dockerfile.staging
+    restart: always
+    ports:
+      - 8089:8089
+    environment:
+      API_GATEWAY_URL: http://api-gateway:8079
+
   admin-cp:
     build:
       context: ./admin-cp
