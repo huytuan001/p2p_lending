@@ -1,0 +1,28 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ReportingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="CyberLending.report-service.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="vn.five9.cyberlending.reporting_service.ReportingServiceApplication" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+    <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
+    <envs>
+      <env name="DATABASE_SOURCE" value="jdbc:mariadb://127.0.0.1:3305/report_service" />
+      <env name="DATABASE_USER" value="root" />
+      <env name="DATABASE_PASSWORD" value="root" />
+      <env name="MONGO_HOST" value="127.0.0.1" />
+      <env name="MONGO_PORT" value="31885" />
+      <env name="MONGO_USER" value="root" />
+      <env name="MONGO_PASSWORD" value="root" />
+      <env name="RABBIT_HOST" value="localhost" />
+      <env name="RABBIT_PORT" value="5672" />
+      <env name="RABBIT_USER" value="guest" />
+      <env name="RABBIT_PASSWORD" value="guest" />
+      <env name="REDIS_HOST" value="localhost" />
+      <env name="REDIS_PORT" value="6379" />
+      <env name="API_GATEWAY_URL" value="http://localhost:8079" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

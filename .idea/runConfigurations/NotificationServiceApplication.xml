@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="NotificationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <module name="im-service_main" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="vn.mony.notification_service.NotificationServiceApplication" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="vn.five9.cyberlending.notification_service.NotificationServiceApplication" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <envs>
       <env name="API_GATEWAY_URL" value="http://127.0.0.1:8079" />

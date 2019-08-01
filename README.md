@@ -3,7 +3,14 @@
 2. API phát triển theo quy chuẩn RESTful: https://restfulapi.net | https://tools.ietf.org/html/rfc6690
 3. Gitflow: https://github.com/nvie/gitflow
 4. Code quality control sử dụng SonarQube
-5. Đặc tả thiết kế API: https://documenter.getpostman.com/view/11739/RW1gFHck
+5. Đặc tả thiết kế API.
+6. Checklist for creating new services
+
+# Checklist
+- [ ] Spring boot: 2.0.x 
+- [ ] Spring Cloud: Finchley Release
+- [ ] build.gradle bao gồm: Eureka Client Discovery, Sleuth, Zipkin Client, Spring Boot Admin, Spring boot actuators, Swaggers
+- [ ] Tạo run configuration chia sẻ cho môi trường local. 
 
 # Tech
 1. Database engine: MariaDB version 10.
