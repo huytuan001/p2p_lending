@@ -16,7 +16,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: mony
-    labels: 
+    labels:
       kompose.volume.size: 5Gi
     volumes:
       - ./database/logging-db:/data/db
@@ -38,10 +38,29 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: lending-platform
-    labels: 
+    labels:
       kompose.volume.size: 5Gi
     volumes:
       - ./database/lending-platform:/var/lib/mysql
+
+  zipkin:
+    image: openzipkin/zipkin
+      # Environment settings are defined here https://github.com/openzipkin/zipkin/blob/master/zipkin-server/README.md#environment-variables
+      # environment:
+      # - STORAGE_TYPE=mysql
+      # Point the zipkin at the storage backend
+      # - MYSQL_HOST=mysql
+      # Uncomment to enable scribe
+      # - SCRIBE_ENABLED=true
+      # Uncomment to enable self-tracing
+    # - SELF_TRACING_ENABLED=true
+    # Uncomment to enable debug logging
+    # - JAVA_OPTS=-Dlogging.level.zipkin2=DEBUG
+    ports:
+      # Port used for the Zipkin UI and HTTP Api
+      - 9411:9411
+      # Uncomment if you set SCRIBE_ENABLED=true
+      # - 9410:9410
 
   config-service:
     build:
@@ -116,7 +135,7 @@ services:
       IM_SERVICE_CALLBACK: http://account-service:8081
       LOGGING_SERVICE: http://logging-service:8084
       IDENTITY_SERVICE: http://identity-service:8086
-      RABBIT_HOST : mony-queue
+      RABBIT_HOST: mony-queue
       RABBIT_PASSWORD: guest
       RABBIT_PORT: 5672
       RABBIT_USER: guest
@@ -202,7 +221,7 @@ services:
       MONGO_PORT: "27017"
       MONGO_USER: root
       MONGO_PASSWORD: root
-      RABBIT_HOST : mony-queue
+      RABBIT_HOST: mony-queue
       RABBIT_PORT: 5672
       RABBIT_USER: guest
       RABBIT_PASSWORD: guest
@@ -218,7 +237,7 @@ services:
     ports:
       - 8085:8085
     environment:
-      API_GATEWAY_URL: http://api-gateway:8079 
+      API_GATEWAY_URL: http://api-gateway:8079
       IDENTITY_SERVICE: http://identity-service:8086
       DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/scoring_service
       DATABASE_USER: root
