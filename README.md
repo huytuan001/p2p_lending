@@ -10,6 +10,7 @@
 - [ ] Spring boot: 2.0.x 
 - [ ] Spring Cloud: Finchley Release
 - [ ] build.gradle bao gồm: Eureka Client Discovery, Sleuth, Zipkin Client, Spring Boot Admin, Spring boot actuators, Swaggers
+- [ ] Tạo run configuration chia sẻ cho môi trường local. 
 
 # Tech
 1. Database engine: MariaDB version 10.
