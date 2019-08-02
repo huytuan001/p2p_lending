@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="ReportingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="CyberLending.report-service.main" />
+    <module name="report-service_main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="vn.five9.cyberlending.reporting_service.ReportingServiceApplication" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
