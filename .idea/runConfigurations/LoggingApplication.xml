@@ -17,6 +17,7 @@
       <env name="RABBIT_USER" value="guest" />
       <env name="RABBIT_PASSWORD" value="guest" />
       <env name="LOAN_SERVICE" value="http://localhost:8082" />
+      <env name="IM_SERVICE" value="http://localhost:8080" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
