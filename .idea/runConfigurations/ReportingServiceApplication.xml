@@ -23,6 +23,7 @@
       <env name="LOGGING_SERVICE" value="http://localhost:8084" />
       <env name="LOAN_SERVICE" value="http://localhost:8082" />
       <env name="ACCOUNT_SERVICE" value="http://localhost:8081" />
+      <env name="IM_SERVICE" value="http://localhost:8080" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
