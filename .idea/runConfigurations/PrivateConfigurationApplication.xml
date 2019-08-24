@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-    <module name="config-service_main" />
+    <module name="CyberLending.config-service.main" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="com.mony.configserver.*" />
@@ -9,6 +9,7 @@
     </extension>
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.mony.configserver.ConfigServerApplication" />
     <option name="ALTERNATIVE_JRE_PATH" />
+    <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
     <envs>
       <env name="SERVER_GIT_URI" value="http://192.168.105.11:7990/scm/p2p/shared-configuration.git" />
       <env name="SERVER_GIT_USERNAME" value="adminmony" />

@@ -1,11 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="PaymentServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="payment-service_main" />
+    <module name="CyberLending.payment-service.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="vn.five9.cyberlending.paymentservice.PaymentServiceApplication" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
     <envs>
-      <env name="API_GATEWAY_URL" value="http://localhost:8079" />
+      <env name="API_GATEWAY_URL" value="http://localhost:8761/sba" />
       <env name="LOAN_SERVICE" value="http://localhost:8082" />
       <env name="BAOKIM_COLLECTION_URL" value="http://13.250.110.81:8085/Sandbox/Collection" />
       <env name="BAOKIM_PARTNER_CODE" value="MONY" />
