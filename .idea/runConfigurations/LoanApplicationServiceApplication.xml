@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="LoanApplicationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <module name="CyberLending.loan-application-service.main" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="vn.mony.loan_application_service.LoanApplicationServiceApplication" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="vn.five9.cyberlending.loan_application_service.LoanApplicationServiceApplication" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
     <envs>

@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="AccountServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <module name="CyberLending.account-service.main" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="vn.mony.account_service.AccountServiceApplication" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="vn.five9.cyberlending.account_service.AccountServiceApplication" />
     <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
     <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
     <envs>
