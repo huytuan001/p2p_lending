@@ -27,7 +27,7 @@
       <env name="BAOKIM_PUBLIC_KEY" value="/public_key_sandbox.pem" />
       <env name="BAOKIM_AUTH" value="false" />
       <env name="TIME_BACK_START_MONTH" value="1" />
-      <env name="API_GATEWAY_URL" value="http://localhost:8761/sba" />
+      <env name="API_GATEWAY_URL" value="http://localhost:8079" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />

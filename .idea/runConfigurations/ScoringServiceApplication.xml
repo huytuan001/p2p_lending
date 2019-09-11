@@ -14,7 +14,7 @@
       <env name="MONGO_PASSWORD" value="root" />
       <env name="MONGO_DATABASE" value="ascore-raw" />
       <env name="MONGO_AUTH" value="admin" />
-      <env name="API_GATEWAY_URL" value="http://localhost:8761/sba" />
+      <env name="API_GATEWAY_URL" value="http://localhost:8079" />
       <env name="IDENTITY_SERVICE" value="http://localhost:8086" />
     </envs>
     <method v="2">
