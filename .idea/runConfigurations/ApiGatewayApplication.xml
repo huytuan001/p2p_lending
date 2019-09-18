@@ -13,6 +13,7 @@
       <env name="LOGGING_SERVICE" value="http://localhost:8084" />
       <env name="PAYMENT_SERVICE" value="http://localhost:8089" />
       <env name="SCORING_SERVICE" value="http://localhost:8085" />
+      <env name="PERMISSION_ENABLE" value="true" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
