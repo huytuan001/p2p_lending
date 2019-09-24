@@ -1,246 +1,178 @@
 version: '3'
 services:
-  mony-queue:
-    image: rabbitmq:3-management
-    restart: always
-    ports:
-      - 5672:5672
-      - 15672:15672
+    config-service:
+        build:
+            context: ./config-service
+            dockerfile: Dockerfile.prod
+        restart: always
+        ports:
+            - 8888:8888
+        environment:
+            SERVER_GIT_URI: http://192.168.105.11:7990/scm/p2p/shared-configuration.git
+            SERVER_GIT_USERNAME: Adminmony
+            SERVER_GIT_PASSWORD: adminmony
 
-  logging-db:
-    image: mongo
-    restart: always
-    ports:
-      - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
-      MONGO_INITDB_DATABASE: mony
-    labels:
-      kompose.volume.size: 5Gi
-    volumes:
-      - ./database/logging-db:/data/db
+    identity-service:
+        build:
+            context: ./identity-service
+            dockerfile: Dockerfile.prod
+        restart: always
+        ports:
+            - 8086:8086
+        environment:
+            API_GATEWAY_URL: http://api-gateway:8079
+            DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/identity_service
+            DATABASE_USER: root
+            DATABASE_PASSWORD: root
 
-  caching-db:
-    image: redis
-    restart: always
-    ports:
-      - 6379:6379
-    volumes:
-      - ./database/redis-db:/data
+    api-gateway:
+        build:
+            context: ./api-gateway
+            dockerfile: Dockerfile.prod
+        restart: always
+        ports:
+            - 8079:8079
+        environment:
+            NOTIFICATION_SERVICE: http://im-service:8080
+            ACCOUNT_SERVICE: http://account-service:8081
+            LOAN_SERVICE: http://loan-service:8082
+            LOAN_APPLICATION_SERVICE: http://loan-service:8083
+            LOGGING_SERVICE: http://logging-service:8084
+            SCORING_SERVICE: http://scoring-service:8085
+            IDENTITY_SERVICE: http://identity-service:8086
 
-  zipkin:
-    image: openzipkin/zipkin
-      # Environment settings are defined here https://github.com/openzipkin/zipkin/blob/master/zipkin-server/README.md#environment-variables
-      # environment:
-      # - STORAGE_TYPE=mysql
-      # Point the zipkin at the storage backend
-      # - MYSQL_HOST=mysql
-      # Uncomment to enable scribe
-      # - SCRIBE_ENABLED=true
-    # Uncomment to enable self-tracing
-    # - SELF_TRACING_ENABLED=true
-    # Uncomment to enable debug logging
-    # - JAVA_OPTS=-Dlogging.level.zipkin2=DEBUG
-    ports:
-      # Port used for the Zipkin UI and HTTP Api
-      - 9411:9411
-      # Uncomment if you set SCRIBE_ENABLED=true
-      # - 9410:9410
+    account-service:
+        build:
+            context: ./account-service
+            dockerfile: Dockerfile.prod
+        restart: always
+        ports:
+            - 8081:8081
+        environment:
+            DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/account_service
+            DATABASE_USER: root
+            DATABASE_PASSWORD: root
+            API_GATEWAY_URL: http://api-gateway:8079
+            IM_SERVICE: http://im-service:8080
+            LOAN_SERVICE: http://loan-service:8082
+            IM_SERVICE_CALLBACK: http://account-service:8081
+            LOGGING_SERVICE: http://logging-service:8084
+            IDENTITY_SERVICE: http://identity-service:8086
+            RABBIT_HOST: mony-queue
+            RABBIT_PASSWORD: guest
+            RABBIT_PORT: 5672
+            RABBIT_USER: guest
 
-  config-service:
-    build:
-      context: ./config-service
-      dockerfile: Dockerfile.prod
-    restart: always
-    ports:
-      - 8888:8888
-    environment:
-      SERVER_GIT_URI: http://192.168.105.11:7990/scm/p2p/shared-configuration.git
-      SERVER_GIT_USERNAME: Adminmony
-      SERVER_GIT_PASSWORD: adminmony
+    loan-service:
+        build:
+            context: ./loan-service
+            dockerfile: Dockerfile.prod
+        ports:
+            - 8082:8082
+        restart: always
+        environment:
+            DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/loan_service
+            DATABASE_USER: root
+            DATABASE_PASSWORD: root
+            API_GATEWAY_URL: http://api-gateway:8079
+            IM_SERVICE: http://im-service:8080
+            ACCOUNT_SERVICE: http://account-service:8081
+            LOAN_APPLICATION_SERVICE: http://loan-application-service:8083
+            LOGGING_SERVICE: http://logging-service:8084
+            IDENTITY_SERVICE: http://identity-service:8086
+            IM_SERVICE_CALLBACK: http://loan-service:8082
+            SELF_SERVICE: http://loan-service:8082
+            REDIS_HOST: caching-db
+            REDIS_PORT: 6379
+            RABBIT_HOST: mony-queue
+            RABBIT_PASSWORD: guest
+            RABBIT_PORT: 5672
+            RABBIT_USER: guest
+            ASSIGN_LOAN_TIME: 120000
+            BAOKIM_URL: http://210.245.83.82:9095/Golive/FirmBanking
+            BAOKIM_CODE: MONY
+            BAOKIM_PRIVATE_KEY: /privatekey_golive.pem
+            BAOKIM_PUBLIC_KEY: /publickey_golive.pem
+        volumes:
+            - ./uploads:/app/uploads
 
-  api-gateway:
-    build:
-      context: ./api-gateway
-      dockerfile: Dockerfile.prod
-    restart: always
-    ports:
-      - 8079:8079
-    environment:
-      NOTIFICATION_SERVICE: http://im-service:8080
-      ACCOUNT_SERVICE: http://account-service:8081
-      LOAN_SERVICE: http://loan-service:8082
-      LOAN_APPLICATION_SERVICE: http://loan-service:8083
-      LOGGING_SERVICE: http://logging-service:8084
-      SCORING_SERVICE: http://scoring-service:8085
-      IDENTITY_SERVICE: http://identity-service:8086
+    loan-application-service:
+        build:
+            context: ./loan-application-service
+            dockerfile: Dockerfile.prod
+        ports:
+            - 8083:8083
+        restart: always
+        environment:
+            DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/loan_application_service
+            DATABASE_USER: root
+            DATABASE_PASSWORD: root
+            API_GATEWAY_URL: http://api-gateway:8079
+            IM_SERVICE: http://im-service:8080
+            ACCOUNT_SERVICE: http://account-service:8081
+            LOAN_SERVICE: http://loan-service:8082
+            IDENTITY_SERVICE: http://identity-service:8086
+            IM_SERVICE_CALLBACK: http://loan-application-service:8083
+            SELF_SERVICE: http://loan-application-service:8083
 
-  identity-service:
-    build:
-      context: ./identity-service
-      dockerfile: Dockerfile.prod
-    restart: always
-    ports:
-      - 8086:8086
-    environment:
-      API_GATEWAY_URL: http://api-gateway:8079
-      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/identity_service
-      DATABASE_USER: root
-      DATABASE_PASSWORD: root
-    depends_on:
-      - api-gateway
-      - im-service
+    logging-service:
+        build:
+            context: ./logging-service
+            dockerfile: Dockerfile.prod
+        restart: always
+        ports:
+            - 8084:8084
+        environment:
+            API_GATEWAY_URL: http://api-gateway:8079
+            IM_SERVICE: http://im-service:8080
+            LOAN_SERVICE: http://loan-service:8082
+            IDENTITY_SERVICE: http://identity-service:8086
+            IM_SERVICE_CALLBACK: http://account-service:8081
+            MONGO_HOST: logging-db
+            MONGO_PORT: "27017"
+            MONGO_USER: root
+            MONGO_PASSWORD: root
+            RABBIT_HOST: mony-queue
+            RABBIT_PORT: 5672
+            RABBIT_USER: guest
+            RABBIT_PASSWORD: guest
 
-  im-service:
-    build:
-      context: ./im-service
-      dockerfile: Dockerfile.prod
-    restart: always
-    environment:
-      API_GATEWAY_URL: http://api-gateway:8079
-    ports:
-      - 8080:8080
-    depends_on:
-      - api-gateway
+    scoring-service:
+        build:
+            context: ./scoring-service
+            dockerfile: Dockerfile.prod
+        restart: always
+        ports:
+            - 8085:8085
+        environment:
+            API_GATEWAY_URL: http://api-gateway:8079
+            IDENTITY_SERVICE: http://identity-service:8086
+            DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/scoring_service
+            DATABASE_USER: root
+            DATABASE_PASSWORD: root
+            MONGO_HOST: logging-db
+            MONGO_PORT: 27018
+            MONGO_USER: root
+            MONGO_PASSWORD: root
+            MONGO_AUTH: admin
+            MONGO_DATABASE: ascore-raw
 
-  account-service:
-    build:
-      context: ./account-service
-      dockerfile: Dockerfile.prod
-    restart: always
-    ports:
-      - 8081:8081
-    environment:
-      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/account_service
-      DATABASE_USER: root
-      DATABASE_PASSWORD: root
-      API_GATEWAY_URL: http://api-gateway:8079
-      IM_SERVICE: http://im-service:8080
-      LOAN_SERVICE: http://loan-service:8082
-      IM_SERVICE_CALLBACK: http://account-service:8081
-      LOGGING_SERVICE: http://logging-service:8084
-      IDENTITY_SERVICE: http://identity-service:8086
-      RABBIT_HOST: mony-queue
-      RABBIT_PASSWORD: guest
-      RABBIT_PORT: 5672
-      RABBIT_USER: guest
-    depends_on:
-      - api-gateway
-      - im-service
+    payment-service:
+        build:
+            context: ./payment-service
+            dockerfile: Dockerfile.prod
+        restart: always
+        ports:
+            - 8089:8089
+        environment:
+            API_GATEWAY_URL: http://api-gateway:8079
 
-  loan-service:
-    build:
-      context: ./loan-service
-      dockerfile: Dockerfile.prod
-    ports:
-      - 8082:8082
-    restart: always
-    environment:
-      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/loan_service
-      DATABASE_USER: root
-      DATABASE_PASSWORD: root
-      API_GATEWAY_URL: http://api-gateway:8079
-      IM_SERVICE: http://im-service:8080
-      ACCOUNT_SERVICE: http://account-service:8081
-      LOAN_APPLICATION_SERVICE: http://loan-application-service:8083
-      LOGGING_SERVICE: http://logging-service:8084
-      IDENTITY_SERVICE: http://identity-service:8086
-      IM_SERVICE_CALLBACK: http://loan-service:8082
-      SELF_SERVICE: http://loan-service:8082
-      REDIS_HOST: caching-db
-      REDIS_PORT: 6379
-      RABBIT_HOST: mony-queue
-      RABBIT_PASSWORD: guest
-      RABBIT_PORT: 5672
-      RABBIT_USER: guest
-      ASSIGN_LOAN_TIME: 120000
-      BAOKIM_URL: http://210.245.83.82:9095/Golive/FirmBanking
-      BAOKIM_CODE: MONY
-      BAOKIM_PRIVATE_KEY: /privatekey_golive.pem
-      BAOKIM_PUBLIC_KEY: /publickey_golive.pem
-    volumes:
-      - ./uploads:/app/uploads
-    depends_on:
-      - api-gateway
-      - im-service
-      - account-service
-
-  loan-application-service:
-    build:
-      context: ./loan-application-service
-      dockerfile: Dockerfile.prod
-    ports:
-      - 8083:8083
-    restart: always
-    environment:
-      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/loan_application_service
-      DATABASE_USER: root
-      DATABASE_PASSWORD: root
-      API_GATEWAY_URL: http://api-gateway:8079
-      IM_SERVICE: http://im-service:8080
-      ACCOUNT_SERVICE: http://account-service:8081
-      LOAN_SERVICE: http://loan-service:8082
-      IDENTITY_SERVICE: http://identity-service:8086
-      IM_SERVICE_CALLBACK: http://loan-application-service:8083
-      SELF_SERVICE: http://loan-application-service:8083
-    depends_on:
-      - api-gateway
-      - im-service
-      - account-service
-      - loan-service
-
-  logging-service:
-    build:
-      context: ./logging-service
-      dockerfile: Dockerfile.prod
-    restart: always
-    ports:
-      - 8084:8084
-    environment:
-      API_GATEWAY_URL: http://api-gateway:8079
-      IM_SERVICE: http://im-service:8080
-      LOAN_SERVICE: http://loan-service:8082
-      IDENTITY_SERVICE: http://identity-service:8086
-      IM_SERVICE_CALLBACK: http://account-service:8081
-      MONGO_HOST: logging-db
-      MONGO_PORT: "27017"
-      MONGO_USER: root
-      MONGO_PASSWORD: root
-      RABBIT_HOST: mony-queue
-      RABBIT_PORT: 5672
-      RABBIT_USER: guest
-      RABBIT_PASSWORD: guest
-    depends_on:
-      - api-gateway
-      - im-service
-
-  scoring-service:
-    build:
-      context: ./scoring-service
-      dockerfile: Dockerfile.prod
-    restart: always
-    ports:
-      - 8085:8085
-    environment:
-      API_GATEWAY_URL: http://api-gateway:8079
-      IDENTITY_SERVICE: http://identity-service:8086
-      DATABASE_SOURCE: jdbc:mariadb://lending-platform-database:3305/scoring_service
-      DATABASE_USER: root
-      DATABASE_PASSWORD: root
-      MONGO_HOST: logging-db
-      MONGO_PORT: 27018
-      MONGO_USER: root
-      MONGO_PASSWORD: root
-      MONGO_AUTH: admin
-      MONGO_DATABASE: ascore-raw
-    depends_on:
-      - api-gateway
-
-  admin-cp:
-    build:
-      context: ./admin-cp
-      dockerfile: Dockerfile.prod
-    ports:
-      - 80:80
-    restart: always
+    im-service:
+        build:
+            context: ./im-service
+            dockerfile: Dockerfile.prod
+        restart: always
+        environment:
+            API_GATEWAY_URL: http://api-gateway:8079
+        ports:
+            - 8080:8080
