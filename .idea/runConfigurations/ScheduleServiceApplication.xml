@@ -12,6 +12,7 @@
       <env name="DATABASE_SOURCE" value="jdbc:mariadb://localhost:3305/schedule_service" />
       <env name="DATABASE_USER" value="root" />
       <env name="DATABASE_PASSWORD" value="root" />
+      <env name="ASSIGN_LOAN_TIME" value="120000" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
