@@ -3,7 +3,7 @@ services:
     config-service:
         build:
             context: ./config-service
-            dockerfile: Dockerfile.dev
+            dockerfile: Dockerfile
         restart: always
         ports:
             - 8888:8888
@@ -15,7 +15,7 @@ services:
     identity-service:
         build:
             context: ./identity-service
-            dockerfile: Dockerfile.dev
+            dockerfile: Dockerfile
         restart: always
         ports:
             - 8086:8086
@@ -28,7 +28,7 @@ services:
     api-gateway:
         build:
             context: ./api-gateway
-            dockerfile: Dockerfile.dev
+            dockerfile: Dockerfile
         restart: always
         ports:
             - 8079:8079
@@ -46,7 +46,7 @@ services:
     account-service:
         build:
             context: ./account-service
-            dockerfile: Dockerfile.dev
+            dockerfile: Dockerfile
         restart: always
         ports:
             - 8081:8081
@@ -68,7 +68,7 @@ services:
     loan-service:
         build:
             context: ./loan-service
-            dockerfile: Dockerfile.dev
+            dockerfile: Dockerfile
         ports:
             - 8082:8082
         restart: always
@@ -99,7 +99,7 @@ services:
     loan-application-service:
         build:
             context: ./loan-application-service
-            dockerfile: Dockerfile.dev
+            dockerfile: Dockerfile
         ports:
             - 8083:8083
         restart: always
@@ -118,7 +118,7 @@ services:
     logging-service:
         build:
             context: ./logging-service
-            dockerfile: Dockerfile.dev
+            dockerfile: Dockerfile
         restart: always
         ports:
             - 8084:8084
@@ -140,7 +140,7 @@ services:
     scoring-service:
         build:
             context: ./scoring-service
-            dockerfile: Dockerfile.dev
+            dockerfile: Dockerfile
         restart: always
         ports:
             - 8085:8085
@@ -161,7 +161,7 @@ services:
     payment-service:
         build:
             context: ./payment-service
-            dockerfile: Dockerfile.dev
+            dockerfile: Dockerfile
         restart: always
         ports:
             - 8089:8089
@@ -171,7 +171,7 @@ services:
     im-service:
         build:
             context: ./im-service
-            dockerfile: Dockerfile.dev
+            dockerfile: Dockerfile
         restart: always
         environment:
             API_GATEWAY_URL: http://api-gateway:8079
@@ -181,9 +181,19 @@ services:
     report-service:
         build:
             context: ./report-service
-            dockerfile: Dockerfile.dev
+            dockerfile: Dockerfile
         restart: always
         environment:
             API_GATEWAY_URL: http://api-gateway:8079
         ports:
             - 8090:8090
+            
+    schedule-service:
+        build:
+            context: ./schedule-service
+            dockerfile: Dockerfile
+        restart: always
+        environment:
+            API_GATEWAY_URL: http://api-gateway:8079
+        ports:
+            - 8091:8091
