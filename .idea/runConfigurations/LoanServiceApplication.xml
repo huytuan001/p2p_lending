@@ -28,6 +28,7 @@
       <env name="BAOKIM_AUTH" value="false" />
       <env name="TIME_BACK_START_MONTH" value="1" />
       <env name="API_GATEWAY_URL" value="http://localhost:8079" />
+      <env name="REPORT_SERVICE" value="http://localhost:8090" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />
