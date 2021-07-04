@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-    <module name="CyberLending.config-service.main" />
+    <module name="vn.five9.cyberlending.config-service.main" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="com.mony.configserver.*" />
@@ -11,9 +11,9 @@
     <option name="ALTERNATIVE_JRE_PATH" />
     <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
     <envs>
-      <env name="SERVER_GIT_URI" value="http://192.168.105.11:7990/scm/p2p/shared-configuration.git" />
-      <env name="SERVER_GIT_USERNAME" value="adminmony" />
-      <env name="SERVER_GIT_PASSWORD" value="Adminmony" />
+      <env name="SERVER_GIT_URI" value="https://git.five9.vn/mony/configuration/mony-dev.git" />
+      <env name="SERVER_GIT_USERNAME" value="mony-account" />
+      <env name="SERVER_GIT_PASSWORD" value="five9@123" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />

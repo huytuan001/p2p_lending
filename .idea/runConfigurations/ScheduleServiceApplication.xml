@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="ScheduleServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="CyberLending.schedule-service.main" />
+    <module name="vn.five9.cyberlending.schedule-service.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="vn.five9.cyberlending.schedule_service.ScheduleServiceApplication" />
     <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
     <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
@@ -9,7 +9,7 @@
       <env name="RABBIT_PORT" value="5672" />
       <env name="RABBIT_USER" value="guest" />
       <env name="RABBIT_PASSWORD" value="guest" />
-      <env name="DATABASE_SOURCE" value="jdbc:mariadb://localhost:3305/schedule_service" />
+      <env name="DATABASE_SOURCE" value="jdbc:mariadb://42.113.207.83:32615/schedule_service" />
       <env name="DATABASE_USER" value="root" />
       <env name="DATABASE_PASSWORD" value="root" />
       <env name="ASSIGN_LOAN_TIME" value="120000" />

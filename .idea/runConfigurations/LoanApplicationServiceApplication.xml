@@ -1,11 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="LoanApplicationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="CyberLending.loan-application-service.main" />
+    <module name="vn.five9.cyberlending.loan-application-service.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="vn.five9.cyberlending.loan_application_service.LoanApplicationServiceApplication" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
     <envs>
-      <env name="DATABASE_SOURCE" value="jdbc:mariadb://localhost:3305/loan_application_service" />
+      <env name="DATABASE_SOURCE" value="jdbc:mariadb://192.168.108.30:31699/loan_application_service" />
       <env name="DATABASE_USER" value="root" />
       <env name="DATABASE_PASSWORD" value="root" />
       <env name="API_GATEWAY_URL" value="http://localhost:8079" />

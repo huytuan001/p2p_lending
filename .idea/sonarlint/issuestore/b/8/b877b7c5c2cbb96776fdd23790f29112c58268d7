@@ -1,0 +1,66 @@
+
+_
+java:S1192ÿ"HDefine a constant instead of duplicating this literal "message" 3 times.(¯¾Ñò
+?
+java:S1481ä"(Remove this unused "uid" local variable.(ó×ïØ
+R	java:S125›"<This block of commented-out lines of code should be removed.(ƒ‹ñĞ
+W	java:S125¹"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ
+K
+java:S3740 "/Provide the parametrized type for this generic.(ü¢§Ğùÿÿÿÿ
+F
+java:S3740ä
+"/Provide the parametrized type for this generic.(Ãâ’•
+W	java:S125µ	"<This block of commented-out lines of code should be removed.(¢ó¥üÿÿÿÿ
+W	java:S125Á"<This block of commented-out lines of code should be removed.(¶ƒ—ˆüÿÿÿÿ
+F
+java:S3740"/Provide the parametrized type for this generic.(×û‡¼
+R	java:S125¯"<This block of commented-out lines of code should be removed.(¡Õ±š
+F
+java:S3740†"/Provide the parametrized type for this generic.(×û‡¼
+W	java:S107 "<Method has 9 parameters, which is greater than 7 authorized.(ü¢§Ğùÿÿÿÿ
+­
+java:S4449¾"Annotate the parameter with @javax.annotation.Nullable in method 'getMessage' declaration, or make sure that null can not be passed as argument.(–Îİ«ûÿÿÿÿ
+¨
+java:S4449Á"Annotate the parameter with @javax.annotation.Nullable in method 'getMessage' declaration, or make sure that null can not be passed as argument.(š½‡÷
+W	java:S125æ"<This block of commented-out lines of code should be removed.(Á÷Ôúÿÿÿÿ
+R	java:S125§
+"<This block of commented-out lines of code should be removed.(¡´˜Ó
+\
+java:S1854å"ERemove this useless assignment to local variable "statusLoanNotLock".(¸ïĞÃ
+\	java:S107P"BConstructor has 10 parameters, which is greater than 7 authorized.(¯®Ûúıÿÿÿÿ
+F
+java:S3740—"/Provide the parametrized type for this generic.(«³û—
+K
+java:S3740Ó"/Provide the parametrized type for this generic.(úÑ÷Âúÿÿÿÿ
+W	java:S125Œ"<This block of commented-out lines of code should be removed.(¤°‹øıÿÿÿÿ
+¨
+java:S4449Á"Annotate the parameter with @javax.annotation.Nullable in method 'getMessage' declaration, or make sure that null can not be passed as argument.(š½‡÷
+W	java:S125—"<This block of commented-out lines of code should be removed.(°À×‰ÿÿÿÿÿ
+]
+java:S1192ş"FDefine a constant instead of duplicating this literal "title" 3 times.(¡ÎïŒ
+Q	java:S125¨"<This block of commented-out lines of code should be removed.(èµˆX
+F
+java:S3740"/Provide the parametrized type for this generic.(×û‡¼
+M
+java:S1481å"6Remove this unused "statusLoanNotLock" local variable.(¸ïĞÃ
+R	java:S125ñ
+"<This block of commented-out lines of code should be removed.(ÊŒÓ
+K
+java:S3740ß"/Provide the parametrized type for this generic.(Ã÷™Şøÿÿÿÿ
+K
+java:S3740Ò"/Provide the parametrized type for this generic.(™Ñ™­üÿÿÿÿ
+­
+java:S4449¿"Annotate the parameter with @javax.annotation.Nullable in method 'getMessage' declaration, or make sure that null can not be passed as argument.(òƒÿ¿üÿÿÿÿ
+i
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(Ñ£¯°
+N
+java:S1854ä"7Remove this useless assignment to local variable "uid".(ó×ïØ
+W	java:S125Ã"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ
+R	java:S125"<This block of commented-out lines of code should be removed.(ñİçÃ
+W	java:S125÷"<This block of commented-out lines of code should be removed.(úı§Àıÿÿÿÿ
+K
+java:S3740®"/Provide the parametrized type for this generic.(ñ¹¸ ıÿÿÿÿ
+F
+java:S3740†"/Provide the parametrized type for this generic.(×û‡¼
+F
+java:S3740—"/Provide the parametrized type for this generic.(«³û—

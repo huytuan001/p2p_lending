@@ -1,0 +1,17 @@
+
+@
+java:S1068"*Remove this unused "LOGGER" private field.(Ê’õ¾
+m
+java:S1128"RRemove this unused import 'vn.five9.cyberlending.product_service.entity.Timeline'.(œÑ¤õûÿÿÿÿ
+{
+java:S1128"`Remove this unused import 'vn.five9.cyberlending.product_service.repository.TimelineRepository'.(ßÇ¹§þÿÿÿÿ
+L
+java:S3416"6Update this logger to use "FeeUnitsServiceImpl.class".(Ê’õ¾
+p
+java:S1128"ZRemove this unused import 'vn.five9.cyberlending.product_service.service.TimelineService'.(™¡¾’
+p
+java:S1128"URemove this unused import 'vn.five9.cyberlending.product_service.domain.TimelineDTO'.(ƒó‰©þÿÿÿÿ
+h
+java:S1128"RRemove this unused import 'org.springframework.data.jpa.repository.JpaRepository'.(À™‡“
+º
+java:S1845"£Rename field "LOGGER" to prevent any misunderstanding/clash with field "logger" defined in superclass "vn.five9.cyberlending.product_service.core.CrudServiceImpl".(Ê’õ¾

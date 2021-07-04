@@ -1,14 +1,14 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="IdentityServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="CyberLending.identity-service.main" />
+    <module name="identity-service_main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="vn.five9.cyberlending.identity_service.IdentityServiceApplication" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
     <envs>
       <env name="DATABASE_USER" value="root" />
       <env name="DATABASE_PASSWORD" value="root" />
-      <env name="API_GATEWAY_URL" value="http://localhost:8079" />
-      <env name="DATABASE_SOURCE" value="jdbc:mariadb://localhost:3305/identity_service" />
+      <env name="API_GATEWAY_URL" value="http://localhost:8761/sba" />
+      <env name="DATABASE_SOURCE" value="jdbc:mariadb://192.168.104.181:31037/identity_service" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />

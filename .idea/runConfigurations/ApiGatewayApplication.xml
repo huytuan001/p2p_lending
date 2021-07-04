@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="CyberLending.api-gateway.main" />
+    <module name="vn.five9.cyberlending.api-gateway.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="vn.mony.apigateway.ApiGatewayApplication" />
     <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
     <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />

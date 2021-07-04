@@ -1,0 +1,24 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="EKYCServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="vn.five9.cyberlending.e-kyc-service.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="vn.five9.cyberlending.e_kyc_service.EKYCServiceApplication" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
+    <envs>
+      <env name="REPORT_SERVICE" value="http://localhost:8090" />
+      <env name="ACCOUNT_SERVICE" value="http://localhost:8081" />
+      <env name="LOAN_SERVICE" value="http://localhost:8082" />
+      <env name="RABBIT_HOST" value="localhost" />
+      <env name="RABBIT_PORT" value="5672" />
+      <env name="RABBIT_USER" value="guest" />
+      <env name="RABBIT_PASSWORD" value="guest" />
+      <env name="REDIS_HOST" value="localhost" />
+      <env name="REDIS_PORT" value="6379" />
+      <env name="API_GATEWAY_URL" value="http://localhost:8761/sba" />
+      <env name="DOMAIN_NAME" value="https://admin.mony.vn/admin/" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,12 +1,21 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="NotificationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="CyberLending.im-service.main" />
+    <module name="vn.five9.cyberlending.im-service.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="vn.five9.cyberlending.notification_service.NotificationServiceApplication" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
     <envs>
       <env name="API_GATEWAY_URL" value="http://localhost:8079" />
       <env name="IDENTITY_SERVICE" value="http://localhost:8086" />
+      <env name="ACCOUNT_SERVICE" value="http://localhost:8081" />
+      <env name="OTP_ACTIVE" value="true" />
+      <env name="BRAND_NAME" value="086,096,097,098,032,033,034,035,036,037,038,039" />
+      <!--<env name="LONG_CODE" value="089,090,093,070,079,077,076,078" />-->
+      <env name="PROXY_ADDRESS" value="101.99.18.210" />
+      <env name="PROXY_USERNAME" value="17999901" />
+      <env name="PROXY_PASSWORD" value="04731747" />
+      <env name="NETWORK_IP" value="192.168.8.184" />
+      <env name="CSKH" value="CSKH" />
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />

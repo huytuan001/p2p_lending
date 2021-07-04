@@ -1,0 +1,27 @@
+
+2
+java:S1643u"Use a StringBuilder instead.(¨ëŞ
+_
+java:S1192@"IDefine a constant instead of duplicating this literal "roleCode" 4 times.(öŒ»†
+r
+java:S1488_"\Immediately return this expression instead of assigning it to the temporary variable "path".(±™¬
+<
+java:S1170"!Make this final field static too.(Øô¿Êşÿÿÿÿ
+E
+java:S1066H"/Merge this if statement with the enclosing one.(‰Ó·ê
+J
+java:S3740B"/Provide the parametrized type for this generic.(¾Ş¾‡ùÿÿÿÿ
+J
+java:S37407"/Provide the parametrized type for this generic.( ç±úÿÿÿÿ
+E
+java:S1066;"/Merge this if statement with the enclosing one.(‰Ó·ê
+7
+java:S1170"!Make this final field static too.(€ûÕ¦
+W
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(€ûÕ¦
+I
+java:S3416"4Update this logger to use "PermissionManager.class".(¼÷Ìq
+h
+java:S3776,"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ÙÆ¨Œ
+Z
+java:S25839"DChange this condition so that it does not always evaluate to "false"(¤öÔú

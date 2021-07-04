@@ -47,3 +47,4 @@
 /schedule-service/
 /e-kyc-service/
 /control-plane/
+!.idea

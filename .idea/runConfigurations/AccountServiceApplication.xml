@@ -1,11 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="AccountServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="CyberLending.account-service.main" />
+    <module name="vn.five9.cyberlending.account-service.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="vn.five9.cyberlending.account_service.AccountServiceApplication" />
     <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
     <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
     <envs>
-      <env name="DATABASE_SOURCE" value="jdbc:mariadb://localhost:3305/account_service" />
+      <env name="DATABASE_SOURCE" value="jdbc:mariadb://192.168.108.30:30437/account_service" />
       <env name="DATABASE_USER" value="root" />
       <env name="IM_SERVICE" value="http://localhost:8080" />
       <env name="IM_SERVICE_CALLBACK" value="http://localhost:8080" />
@@ -20,6 +20,7 @@
       <env name="REDIS_PORT" value="6379" />
       <env name="API_GATEWAY_URL" value="http://localhost:8079" />
       <env name="DATABASE_PASSWORD" value="root" />
+      <env name="LOG_PATH" value="http://031de9ff30ef4811940df2f6e1574ed4:52bd95504165410b999d838fcc53e8ba@sentry.prod.ingress.five9.vn/2"/>
     </envs>
     <method v="2">
       <option name="Make" enabled="true" />

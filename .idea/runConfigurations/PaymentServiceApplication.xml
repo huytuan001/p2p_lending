@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="PaymentServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="CyberLending.payment-service.main" />
+    <module name="vn.five9.cyberlending.payment-service.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="vn.five9.cyberlending.paymentservice.PaymentServiceApplication" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <option name="SHORTEN_COMMAND_LINE" value="CLASSPATH_FILE" />
